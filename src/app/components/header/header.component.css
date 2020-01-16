@@ -1,0 +1,21 @@
+.bg-menu {
+	background: #1884cc;
+}
+.sticky, .sticky-end {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index:1;
+}
+.b-b {
+	border-bottom: 1px solid#ddd;
+}
+.fs-13 {
+	font-size: 13px;
+}
+.col-grey{
+	color: grey;
+}
+.display-none{
+	display: none;
+}

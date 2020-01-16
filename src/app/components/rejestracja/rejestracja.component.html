@@ -1,0 +1,442 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Formularz zgłoszeniowy-->
+    <div class="col-lg-8 mb-4">
+      <div *ngIf="!formSubmited">
+        <h4>Formularz rejestracji (Registration form)</h4>
+
+        <form (submit)="processForm()">
+          <div class="row mt-4">
+            <div class="form-group col-lg-6">
+              <label for="academicTitle">Tytuł naukowy (Academic title/Degree)</label>
+              <input
+                type="text"
+                name="academicTitle"
+                class="form-control"
+                [(ngModel)]="user.academicTitle"
+              >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6 col-xs-12 mt-3">
+              <label for="name">Imię (First name)
+                <span class="invalid">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                [(ngModel)]="user.name"
+                (blur)="user.name=user.name.toUpperCase();"
+                #userName="ngModel"
+                required
+                minlength="3"
+              >
+              <div
+                class="fs-12 invalid"
+                *ngIf="userName.touched && !userName.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="userName.touched && userName.valid"
+              >Wygląda dobrze</div>
+            </div>
+            <div class="form-group col-lg-6 col-xs-12 mt-3">
+              <label for="surname">Nazwisko (Last name)
+                <span class="invalid">*</span>
+              </label>
+              <input
+                type="text"
+                name="surname"
+                class="form-control"
+                [(ngModel)]="user.surname"
+                (blur)="user.surname=user.surname.toUpperCase();"
+                #userSurname="ngModel"
+                required
+                minlength="3"
+              >
+              <div
+                class="fs-12 invalid"
+                *ngIf="userSurname.touched && !userSurname.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="userSurname.touched && userSurname.valid"
+              >Wygląda dobrze</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="institution">Instytucja / Afiliacja (Institution/Affiliation)</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="user.institution"
+                name="institution"
+              >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="email">Email
+                <span class="invalid">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                [(ngModel)]="user.email"
+                #userEmail="ngModel"
+                required
+                email
+              >
+              <div
+                class="fs-12 invalid"
+                *ngIf="userEmail.touched && !userEmail.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="userEmail.touched && userEmail.valid"
+              >Wygląda dobrze</div>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="phoneNumber">Telefon (Telephone)
+                <span class="invalid">*</span>
+              </label>
+              <input
+                type="text"
+                name="phoneNumber"
+                class="form-control"
+                [(ngModel)]="user.phoneNumber"
+                #userPhoneNumber="ngModel"
+                required
+                phone
+              >
+              <div
+                class="fs-12 invalid"
+                *ngIf="userPhoneNumber.touched && !userPhoneNumber.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="userPhoneNumber.touched && userPhoneNumber.valid"
+              >Wygląda dobrze</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-check ml-3 col-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="memberDiscount"
+                value="memberDiscount"
+                [(ngModel)]="user.memberDiscount"
+                name="memberDiscount"
+                (click)="getMember()"
+              >
+              <label
+                class="fs-15"
+                for="memberDiscount"
+              > Jestem członkiem PTTPB (mam opłacone wszystkie składki z okresu bycia członkiem PTTPB do 2020 r.)
+                i/lub jestem aktualnie pracownikiem/studentem Instytutu Psychologii UJ
+              </label>
+            </div>
+          </div>
+
+          <!-- Prekonferencja -->
+          <div class="row">
+            <div class="form-group col-lg-7 col-12 mt-3">
+              <label for="preconferenceWorkshop">Warsztaty prekonferencyjne (Pre-congress workshops) <span
+                  class="invalid"
+                >*</span></label>
+              <select
+                class="custom-select"
+                [(ngModel)]="user.preconference"
+                name="preconference"
+                (change)="getPrice($event)"
+              >
+                <option value="">Proszę wybrać</option>
+                <option
+                  *ngFor="let item of preconference"
+                  [ngValue]="item.value"
+                  [ngClass]="{'strike': item.disabled}"
+                  [disabled]="item.disabled"
+                >{{item.title}}</option>
+              </select>
+              <div
+                class="fs-12 invalid"
+                *ngIf="preconference.touched && !preconference.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="preconference.touched && preconference.valid"
+              >Wygląda dobrze</div>
+            </div>
+          </div>
+
+          <!-- Warsztaty -->
+          <div class="row">
+            <div class="form-group col-lg-7 col-12 mt-3">
+              <label for="regularconferenceWorkshop">Warsztaty konferencyjne (In-congress workshops) <span
+                  class="invalid"
+                >*</span></label>
+              <select
+                class="custom-select"
+                [(ngModel)]="user.regularconference"
+                name="regularconference"
+                (change)="getPrice($event)"
+              >
+                <option value="">Proszę wybrać</option>
+                <option
+                  *ngFor="let item of regularconference"
+                  [ngValue]="item.value"
+                  [ngClass]="{'strike': item.disabled}"
+                  [disabled]="item.disabled"
+                >{{item.title}}</option>
+              </select>
+              <div
+                class="fs-12 invalid"
+                *ngIf="regularconference.touched && !regularconference.valid"
+              >Pole wymagane</div>
+              <div
+                class="fs-12 valid"
+                *ngIf="regularconference.touched && regularconference.valid"
+              >Wygląda dobrze</div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="form-check ml-3 col-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="doctorPoints"
+                value="doctorPoints"
+                #regulamin="ngModel"
+                [(ngModel)]="user.doctorPoints"
+                name="doctorPoints"
+              >
+              <label
+                class="fs-15"
+                for="doctorPoints"
+              > Chcę otrzymać zaświadczenie o punktach lekarskich
+              </label>
+            </div>
+          </div>
+
+          <div *ngIf="user.doctorPoints">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <label for="doctorNumber">Numer prawa wykonywania zawodu</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.doctorNumber"
+                  name="doctorNumber"
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Faktura VAT -->
+          <div class="row">
+            <div class="form-group col-12">
+              <hr>
+              <label for="fv">Dane do faktury (Invoice data) (prosimy o podanie danych firmy, instytucji na którą ma
+                być
+                wystawiony
+                dokument)</label>
+              <select
+                class="custom-select"
+                [(ngModel)]="user.fv"
+                name="fv"
+              >
+                <option value="">Proszę wybrać</option>
+                <option value="Nie dziękuję">Nie dziękuję</option>
+                <option value="Tak poproszę">Tak poproszę</option>
+              </select>
+            </div>
+          </div>
+
+          <div *ngIf="user.fv =='Tak poproszę'">
+            <div class="row">
+              <div class="col-lg-6 col-xs-12 mt-3">
+                <label for="companyName">Nazwa firmy (Company)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyName"
+                  name="compnayName"
+                >
+              </div>
+              <div class="col-lg-6 col-xs-12 mt-3">
+                <label for="companyNip">NIP (Tax identification numer)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyNip"
+                  name="companyNip"
+                >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 col-xs-12 mt-3">
+                <label for="companyAddress">Adres - ulica, nr domu/lokalu (Address)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyAddress"
+                  name="companyAddress"
+                >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-xs-12 mt-3">
+                <label for="companyZip">Kod pocztowy (Postal code)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyZip"
+                  name="comnanyZip"
+                >
+              </div>
+              <div class="col-lg-6 col-xs-12 mt-3">
+                <label for="companyCity">Miasto (City)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyCity"
+                  name="companyCity"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 mt-3">
+              <hr>
+              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice}} zł</h5>
+            </div>
+          </div>
+
+          <div class="row  mt-3">
+            <div class="form-check ml-3 col-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="rodo"
+                value="rodo"
+                #regulamin="ngModel"
+                [(ngModel)]="user.rodo"
+                name="rodo"
+                required
+              >
+              <label
+                class="fs-15"
+                for="rodo"
+              > Oświadczenie <a
+                  href="#"
+                  target="_blank"
+                >RODO</a> (I accept General Data Protection Regulation)
+                <span class="invalid">*</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-check ml-3 col-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="regulamin"
+                value="regulamin"
+                #regulamin="ngModel"
+                [(ngModel)]="user.regulamin"
+                name="regulamin"
+                required
+              >
+              <label
+                class="fs-15"
+                for="regulamin"
+              >
+                Oświadczam, że zapoznałem/am się z treścią
+                <a
+                  href="assets/Regulamin-Konferencji-PTTPB-2018.pdf"
+                  target="_blank"
+                >regulaminu konferencji</a> i akceptuje jego postanowienia. (I accept the conference regulations)
+                <span class="invalid">*</span>
+              </label>
+            </div>
+            <a
+              class="btn btn-outline-info disabled"
+              *ngIf="!regulamin.valid"
+            >Wyślij zgłoszenie - zaznacz, że zapoznałeś/łaś się z regulaminem</a>
+            <button
+              type="submit"
+              class="btn btn-success mt-2 btn-block col-w"
+              *ngIf="regulamin.valid"
+            >Wyślij zgłoszenie</button>
+          </div>
+
+          <!-- <a
+            class="btn btn-primary mt-3 mb-5 col-xs-12 col-w"
+            (click)="getMember()"
+            [ngClass]="!userEmail.valid ? 'disabled' : 'cursor-pointer'"
+            *ngIf="!secondStep"
+          >Przejdź do następnego kroku</a> -->
+
+          <!-- <div *ngIf="secondStep">
+            <div
+              class="alert alert-success mt-3"
+              role="alert"
+              *ngIf="activeMember"
+            >
+              <b>Gratulacje</b> Rabat dla Członków PTTPB został naliczony
+            </div>
+          </div> -->
+        </form>
+      </div>
+      <!-- Success form submited-->
+      <div
+        class="alert alert-success"
+        role="alert"
+        *ngIf="formSubmited"
+      >
+        <h4 class="alert-heading">Twoje zgłoszenie zostało przyjęte</h4>
+        <p>Na podany przez ciebie adres email wysłaliśmy potwierdzenie rejestracji. Jeśli nie widzisz go proszę
+          sprawdzić w folderze "Spam"</p>
+        <p>Warunkiem uczestnictwa w konferencji jest dokonanie opłaty konferencyjnej. Zgodnie z regulaminem konferencji
+          prosimy
+          o uiszczenie opłaty konferencyjnej w terminie do 4 dni od daty rejestracji</p>
+        <h5>Kwota do zapłaty: {{conferencePrice}} zł</h5>
+        <hr>
+        <p>Nr konta: 15 1050 1038 1000 0022 3148 3237</p>
+        <p>POLSKIE TOWARZYSTWO TERAPII POZNAWCZEJ I BEHAWIORALNEJ
+          <br> UL. OGRODOWA 28/30 LOKAL 317
+          <br> 00-896 WARSZAWA
+        </p>
+        <p>Tytuł przelewu: Opłata Konferencyjna,
+          <i>{{user.name}} {{user.surname}}</i>
+        </p>
+      </div>
+    </div>
+    <!-- <div
+      class="alert alert-success text-center"
+      role="alert"
+    >
+      <h4 class="alert-heading">Rejestracja zakończona</h4>
+      <p>Limit miejsc został wyczerpany</p>
+    </div> -->
+  </div>
+</div>

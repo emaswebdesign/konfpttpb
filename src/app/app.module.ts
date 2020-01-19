@@ -52,6 +52,12 @@ import { MobilenavComponent } from "./components/mobilenav/mobilenav.component";
 import { EnMobilenavComponent } from "./components/en-mobilenav/en-mobilenav.component";
 import { KrakowComponent } from "./components/krakow/krakow.component";
 import { EnKrakowComponent } from "./components/en-krakow/en-krakow.component";
+import { AgnieszkaPopielComponent } from "./components/agnieszka-popiel/agnieszka-popiel.component";
+import { EnAgnieszkaPopielComponent } from "./components/en-agnieszka-popiel/en-agnieszka-popiel.component";
+import { EwaPraglowskaComponent } from "./components/ewa-praglowska/ewa-praglowska.component";
+import { EnEwaPraglowskaComponent } from "./components/en-ewa-praglowska/en-ewa-praglowska.component";
+import { GuestSliderMobileComponent } from './components/guest-slider-mobile/guest-slider-mobile.component';
+import { EnGuestSliderMobileComponent } from './components/en-guest-slider-mobile/en-guest-slider-mobile.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -80,6 +86,10 @@ const appRoutes: Routes = [
   { path: "en-robert-leahy", component: EnRobertLeahyComponent },
   { path: "michaela-swales", component: MichaelaSwalesComponent },
   { path: "en-michaela-swales", component: EnMichaelaSwalesComponent },
+  { path: "agnieszka-popiel", component: AgnieszkaPopielComponent },
+  { path: "en-agnieszka-popiel", component: EnAgnieszkaPopielComponent },
+  { path: "ewa-praglowska", component: EwaPraglowskaComponent },
+  { path: "en-ewa-praglowska", component: EnEwaPraglowskaComponent },
   { path: "en-home-page", component: EnHomePageComponent },
   { path: "invited-speakers", component: EnWykladowcyComponent },
   { path: "dojazd-komunikacja", component: DojazdKomunikacjaComponent },
@@ -136,7 +146,13 @@ const appRoutes: Routes = [
     MobilenavComponent,
     EnMobilenavComponent,
     KrakowComponent,
-    EnKrakowComponent
+    EnKrakowComponent,
+    AgnieszkaPopielComponent,
+    EnAgnieszkaPopielComponent,
+    EwaPraglowskaComponent,
+    EnEwaPraglowskaComponent,
+    GuestSliderMobileComponent,
+    EnGuestSliderMobileComponent
   ],
   imports: [
     BrowserModule,

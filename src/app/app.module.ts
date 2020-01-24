@@ -56,8 +56,10 @@ import { AgnieszkaPopielComponent } from "./components/agnieszka-popiel/agnieszk
 import { EnAgnieszkaPopielComponent } from "./components/en-agnieszka-popiel/en-agnieszka-popiel.component";
 import { EwaPraglowskaComponent } from "./components/ewa-praglowska/ewa-praglowska.component";
 import { EnEwaPraglowskaComponent } from "./components/en-ewa-praglowska/en-ewa-praglowska.component";
-import { GuestSliderMobileComponent } from './components/guest-slider-mobile/guest-slider-mobile.component';
-import { EnGuestSliderMobileComponent } from './components/en-guest-slider-mobile/en-guest-slider-mobile.component';
+import { GuestSliderMobileComponent } from "./components/guest-slider-mobile/guest-slider-mobile.component";
+import { EnGuestSliderMobileComponent } from "./components/en-guest-slider-mobile/en-guest-slider-mobile.component";
+import { AuditoriumMaximumComponent } from "./components/auditorium-maximum/auditorium-maximum.component";
+import { EnAuditoriumMaximumComponent } from "./components/en-auditorium-maximum/en-auditorium-maximum.component";
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -96,6 +98,8 @@ const appRoutes: Routes = [
   { path: "en-dojazd-komunikacja", component: EnDojazdKomunikacjaComponent },
   { path: "krakow", component: KrakowComponent },
   { path: "en-krakow", component: EnKrakowComponent },
+  { path: "auditorium-maximum", component: AuditoriumMaximumComponent },
+  { path: "en-auditorium-maximum", component: EnAuditoriumMaximumComponent },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -152,7 +156,9 @@ const appRoutes: Routes = [
     EwaPraglowskaComponent,
     EnEwaPraglowskaComponent,
     GuestSliderMobileComponent,
-    EnGuestSliderMobileComponent
+    EnGuestSliderMobileComponent,
+    AuditoriumMaximumComponent,
+    EnAuditoriumMaximumComponent
   ],
   imports: [
     BrowserModule,

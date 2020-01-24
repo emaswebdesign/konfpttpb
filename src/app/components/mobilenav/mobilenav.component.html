@@ -85,6 +85,16 @@
               >
                 <a
                   class="nav-link"
+                  routerLink="{{versionEn ? '/en-auditorium-maximum' : '/auditorium-maximum'}}"
+                >{{versionEn ? 'Venue' : 'Auditorium Maximum'}}</a>
+              </li>
+              <li
+                class="nav-item"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+              >
+                <a
+                  class="nav-link"
                   routerLink="{{versionEn ? '/en-dojazd-komunikacja' : '/dojazd-komunikacja'}}"
                 >{{versionEn ? 'Transport' : 'Dojazd i komunikacja'}}</a>
               </li>

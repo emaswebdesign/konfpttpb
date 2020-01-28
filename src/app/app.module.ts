@@ -60,6 +60,8 @@ import { GuestSliderMobileComponent } from "./components/guest-slider-mobile/gue
 import { EnGuestSliderMobileComponent } from "./components/en-guest-slider-mobile/en-guest-slider-mobile.component";
 import { AuditoriumMaximumComponent } from "./components/auditorium-maximum/auditorium-maximum.component";
 import { EnAuditoriumMaximumComponent } from "./components/en-auditorium-maximum/en-auditorium-maximum.component";
+import { InstytutPsychologiiUjComponent } from './components/instytut-psychologii-uj/instytut-psychologii-uj.component';
+import { EnInstytutPsychologiiUjComponent } from './components/en-instytut-psychologii-uj/en-instytut-psychologii-uj.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -100,6 +102,8 @@ const appRoutes: Routes = [
   { path: "en-krakow", component: EnKrakowComponent },
   { path: "auditorium-maximum", component: AuditoriumMaximumComponent },
   { path: "en-auditorium-maximum", component: EnAuditoriumMaximumComponent },
+  { path: "instytut-psychologii-uj", component: InstytutPsychologiiUjComponent },
+  { path: "en-instytut-psychologii-uj", component: EnInstytutPsychologiiUjComponent },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -158,7 +162,9 @@ const appRoutes: Routes = [
     GuestSliderMobileComponent,
     EnGuestSliderMobileComponent,
     AuditoriumMaximumComponent,
-    EnAuditoriumMaximumComponent
+    EnAuditoriumMaximumComponent,
+    InstytutPsychologiiUjComponent,
+    EnInstytutPsychologiiUjComponent
   ],
   imports: [
     BrowserModule,

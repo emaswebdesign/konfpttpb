@@ -20,7 +20,7 @@
 
 <div class="text-left container">
   <div class="row align-items-center">
-    <div class="col-9">
+    <div class="col-9 col-md-5 col-lg-6 col-xl-6">
       <a routerLink="{{versionEn ? '/en-home-page' : '/'}}">
         <img
           class="img-fluid pt-4 pb-4"
@@ -28,7 +28,14 @@
         >
       </a>
     </div>
-    <div class="col-3 text-right">
+    <div class="col-3 col-md-5 col-lg-4 col-xl-5 text-right hidden-sm-down">
+      <button
+        type="button"
+        class="btn btn-success"
+        routerLink="{{versionEn ? '/en-cennik' : '/cennik'}}"
+      >{{versionEn ? 'Registration  for conferences' : 'Rejestracja na konferencje'}} </button>
+    </div>
+    <div class="col-3 col-md-2 col-lg-2 col-xl-1 text-right">
       <a
         class="mr-2"
         href="https://www.facebook.com/PTTPB-Krak%C3%B3w-2020-102004127930601"
@@ -50,16 +57,16 @@
   <app-en-meganav *ngIf="versionEn"></app-en-meganav>
 </div>
 
-<!-- <div class="bg-faded hidden-md-up pt-2 pb-2">
+<div class="bg-faded hidden-md-up pt-2 pb-2">
   <div class="container">
     <div class="row">
       <div class="col d-flex align-items-center justify-content-center">
         <button
           type="button"
           class="btn btn-success"
-          routerLink="/rejestracja-na-konferencje"
+          routerLink="/cennik"
         >Rejestracja na konferencje</button>
       </div>
     </div>
   </div>
-</div> -->
+</div>

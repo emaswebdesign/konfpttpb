@@ -60,8 +60,12 @@ import { GuestSliderMobileComponent } from "./components/guest-slider-mobile/gue
 import { EnGuestSliderMobileComponent } from "./components/en-guest-slider-mobile/en-guest-slider-mobile.component";
 import { AuditoriumMaximumComponent } from "./components/auditorium-maximum/auditorium-maximum.component";
 import { EnAuditoriumMaximumComponent } from "./components/en-auditorium-maximum/en-auditorium-maximum.component";
-import { InstytutPsychologiiUjComponent } from './components/instytut-psychologii-uj/instytut-psychologii-uj.component';
-import { EnInstytutPsychologiiUjComponent } from './components/en-instytut-psychologii-uj/en-instytut-psychologii-uj.component';
+import { InstytutPsychologiiUjComponent } from "./components/instytut-psychologii-uj/instytut-psychologii-uj.component";
+import { EnInstytutPsychologiiUjComponent } from "./components/en-instytut-psychologii-uj/en-instytut-psychologii-uj.component";
+import { KonferencjaStudenckaComponent } from "./components/konferencja-studencka/konferencja-studencka.component";
+import { EnKonferencjaStudenckaComponent } from "./components/en-konferencja-studencka/en-konferencja-studencka.component";
+import { EnCennikComponent } from "./components/en-cennik/en-cennik.component";
+import { CennikComponent } from "./components/cennik/cennik.component";
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -102,8 +106,21 @@ const appRoutes: Routes = [
   { path: "en-krakow", component: EnKrakowComponent },
   { path: "auditorium-maximum", component: AuditoriumMaximumComponent },
   { path: "en-auditorium-maximum", component: EnAuditoriumMaximumComponent },
-  { path: "instytut-psychologii-uj", component: InstytutPsychologiiUjComponent },
-  { path: "en-instytut-psychologii-uj", component: EnInstytutPsychologiiUjComponent },
+  {
+    path: "instytut-psychologii-uj",
+    component: InstytutPsychologiiUjComponent
+  },
+  {
+    path: "en-instytut-psychologii-uj",
+    component: EnInstytutPsychologiiUjComponent
+  },
+  { path: "cennik", component: CennikComponent },
+  { path: "en-cennik", component: EnCennikComponent },
+  { path: "konferencja-studencka", component: KonferencjaStudenckaComponent },
+  {
+    path: "en-konferencja-studencka",
+    component: EnKonferencjaStudenckaComponent
+  },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -164,7 +181,11 @@ const appRoutes: Routes = [
     AuditoriumMaximumComponent,
     EnAuditoriumMaximumComponent,
     InstytutPsychologiiUjComponent,
-    EnInstytutPsychologiiUjComponent
+    EnInstytutPsychologiiUjComponent,
+    KonferencjaStudenckaComponent,
+    EnKonferencjaStudenckaComponent,
+    EnCennikComponent,
+    CennikComponent
   ],
   imports: [
     BrowserModule,

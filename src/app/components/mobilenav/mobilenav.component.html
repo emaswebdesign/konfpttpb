@@ -15,8 +15,8 @@
             class="navbar-toggler ml-auto"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
+            data-target="#mobilenavToogle"
+            aria-controls="mobilenavToogle"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -25,39 +25,51 @@
 
           <div
             class="collapse navbar-collapse"
-            id="navbarTogglerDemo02"
+            id="mobilenavToogle"
           >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li
-                class="nav-item"
+                class="nav-item nav-link"
                 data-toggle="collapse"
-                data-target=".navbar-collapse.show"
+                href="#submenu1"
+                aria-controls="#submenu1"
+              >{{versionEn ? 'Organizers' : 'Organizator'}}</li>
+              <div
+                class="collapse ml-3"
+                id="submenu1"
               >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-organizator' : '/organizator'}}"
-                >PTTPB</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-instytut-psychologii-uj' : '/instytut-psychologii-uj'}}"
-                >{{versionEn ? 'The Institute of Psychology UJ' : 'Instytut Psychologii UJ'}}</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-komitety' : '/komitety'}}"
-                >{{versionEn ? 'Committees' : 'Komitet'}}</a>
-              </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-organizator' : '/organizator'}}"
+                  >PTTPB</a>
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-instytut-psychologii-uj' : '/instytut-psychologii-uj'}}"
+                  >{{versionEn ? 'The Institute of Psychology UJ' : 'Instytut Psychologii UJ'}}</a>
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-komitety' : '/komitety'}}"
+                  >{{versionEn ? 'Committees' : 'Komitet'}}</a>
+                </li>
+              </div>
+
               <li
                 class="nav-item"
                 data-toggle="collapse"
@@ -89,35 +101,46 @@
                 >{{versionEn ? 'Call for papers' : 'Zgłoszenie abstraktu'}}</a>
               </li>
               <li
-                class="nav-item"
+                class="nav-item nav-link"
                 data-toggle="collapse"
-                data-target=".navbar-collapse.show"
+                href="#submenu2"
+                aria-controls="#submenu2"
+              >{{versionEn ? 'General Info' : 'Informacje'}}</li>
+              <div
+                class="collapse ml-3"
+                id="submenu2"
               >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-auditorium-maximum' : '/auditorium-maximum'}}"
-                >{{versionEn ? 'Venue' : 'Auditorium Maximum'}}</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-dojazd-komunikacja' : '/dojazd-komunikacja'}}"
-                >{{versionEn ? 'Transport' : 'Dojazd i komunikacja'}}</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-krakow' : '/krakow'}}"
-                >{{versionEn ? 'Cracow' : 'Kraków'}}</a>
-              </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-auditorium-maximum' : '/auditorium-maximum'}}"
+                  >{{versionEn ? 'Venue' : 'Auditorium Maximum'}}</a>
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-dojazd-komunikacja' : '/dojazd-komunikacja'}}"
+                  >{{versionEn ? 'Transport' : 'Dojazd i komunikacja'}}</a>
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    class="nav-link"
+                    routerLink="{{versionEn ? '/en-krakow' : '/krakow'}}"
+                  >{{versionEn ? 'Cracow' : 'Kraków'}}</a>
+                </li>
+              </div>
               <li
                 class="nav-item"
                 data-toggle="collapse"
@@ -127,6 +150,16 @@
                   class="nav-link"
                   routerLink="{{versionEn ? '/en-kontakt' : '/kontakt'}}"
                 >{{versionEn ? 'Contact' : 'Kontakt'}}</a>
+              </li>
+              <li
+                class="nav-item"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+              >
+                <a
+                  class="nav-link"
+                  routerLink="{{versionEn ? '/en-konferencja-studencka' : '/konferencja-studencka'}}"
+                >{{versionEn ? 'Student Conference' : 'Konferencja Studencka'}}</a>
               </li>
             </ul>
           </div>

@@ -66,19 +66,25 @@ class Registration {
      */
     protected function saveRegistration() {
         $result = $this->mysqlConn->query(sprintf(
-            "INSERT INTO `%s` (`time`,`email`, `name`, `surname`, `preconference`, `fv`, `companyName`, `companyAddress`, `companyCity`, `companyZip`, `companyNip`, `totalPrice`, `contributionPayed`, `Source`) 
-             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+            "INSERT INTO `%s` (`time`,`email`, `name`, `surname`, `academicTitle`, `institution`, `doctorLicenseNumber`, `preconference`, `fv`, `companyName`, `companyAddress`, `companyNrDomu`, `companyNrLokalu`, `companyCity`, `companyZip`, `companyPoczta`, `companyNip`, `totalPrice`, `contributionPayed`, `Source`) 
+             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
             $this->sql_table,
             date('Y-m-d H:i:s'),
             $this->data['email'],
             $this->data['name'],
             $this->data['surname'],
+            $this->data['academicTitle'],
+            $this->data['institution'],
+            $this->data['doctorLicenseNumber'],
             $this->data['preconference'],
             $this->data['fv'],
             $this->data['companyName'],
             $this->data['companyAddress'],
+            $this->data['companyNrDomu'],
+            $this->data['companyNrLokalu'],
             $this->data['companyCity'],
             $this->data['companyZip'],
+            $this->data['companyPoczta'],
             $this->data['companyNip'],
             $this->data['totalPrice'],
             $this->data['contributionPayed'],

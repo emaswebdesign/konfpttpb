@@ -137,16 +137,15 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                id="memberDiscount"
-                value="memberDiscount"
-                [(ngModel)]="user.memberDiscount"
-                name="memberDiscount"
-                (click)="getMember()"
+                id="activeMember"
+                [(ngModel)]="activeMember"
+                name="activeMember"
               >
               <label
                 class="fs-15"
-                for="memberDiscount"
-              > Jestem członkiem PTTPB (mam opłacone wszystkie składki z okresu bycia członkiem PTTPB do 2020 r.)
+                for="activeMember"
+              >
+                Jestem członkiem PTTPB (mam opłacone wszystkie składki z okresu bycia członkiem PTTPB do 2020 r.)
                 i/lub jestem aktualnie pracownikiem/studentem Instytutu Psychologii UJ
               </label>
             </div>
@@ -154,17 +153,33 @@
 
           <!-- Prekonferencja -->
           <div class="row">
-            <div class="form-group col-lg-7 col-12 mt-3">
-              <label for="preconferenceWorkshop">Warsztaty prekonferencyjne (Pre-congress workshops) <span
+            <div class="form-group col-lg-8 col-12 mt-3">
+              <label for="preconferenceWorkshop">Warsztaty przed konferencyjne (Pre-congress workshops) <span
                   class="invalid"
                 >*</span></label>
+              <!-- active member-->
               <select
+                *ngIf="activeMember"
                 class="custom-select"
                 [(ngModel)]="user.preconference"
                 name="preconference"
                 (change)="getPrice($event)"
               >
-                <option value="">Proszę wybrać</option>
+                <option
+                  *ngFor="let item of preconferenceActiveMember"
+                  [ngValue]="item.value"
+                  [ngClass]="{'strike': item.disabled}"
+                  [disabled]="item.disabled"
+                >{{item.title}}</option>
+              </select>
+              <!-- not active member-->
+              <select
+                *ngIf="!activeMember"
+                class="custom-select"
+                [(ngModel)]="user.preconference"
+                name="preconference"
+                (change)="getPrice($event)"
+              >
                 <option
                   *ngFor="let item of preconference"
                   [ngValue]="item.value"
@@ -185,19 +200,19 @@
 
           <!-- Warsztaty -->
           <div class="row">
-            <div class="form-group col-lg-7 col-12 mt-3">
+            <div class="form-group col-lg-8 col-12 mt-3">
               <label for="regularconferenceWorkshop">Warsztaty konferencyjne (In-congress workshops) <span
                   class="invalid"
                 >*</span></label>
               <select
                 class="custom-select"
-                [(ngModel)]="user.regularconference"
-                name="regularconference"
+                [(ngModel)]="user.regularConference"
+                name="regularConference"
                 (change)="getPrice($event)"
               >
                 <option value="">Proszę wybrać</option>
                 <option
-                  *ngFor="let item of regularconference"
+                  *ngFor="let item of regularConference"
                   [ngValue]="item.value"
                   [ngClass]="{'strike': item.disabled}"
                   [disabled]="item.disabled"
@@ -205,11 +220,11 @@
               </select>
               <div
                 class="fs-12 invalid"
-                *ngIf="regularconference.touched && !regularconference.valid"
+                *ngIf="regularConference.touched && !regularConference.valid"
               >Pole wymagane</div>
               <div
                 class="fs-12 valid"
-                *ngIf="regularconference.touched && regularconference.valid"
+                *ngIf="regularConference.touched && regularConference.valid"
               >Wygląda dobrze</div>
             </div>
           </div>
@@ -236,12 +251,12 @@
           <div *ngIf="user.doctorPoints">
             <div class="row">
               <div class="col-lg-6 col-12">
-                <label for="doctorNumber">Numer prawa wykonywania zawodu</label>
+                <label for="doctorLicenseNumber">Numer prawa wykonywania zawodu</label>
                 <input
                   type="text"
                   class="form-control"
-                  [(ngModel)]="user.doctorNumber"
-                  name="doctorNumber"
+                  [(ngModel)]="user.doctorLicenseNumber"
+                  name="doctorLicenseNumber"
                 >
               </div>
             </div>
@@ -289,7 +304,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-lg-12 col-xs-12 mt-3">
                 <label for="companyAddress">Adres - ulica, nr domu/lokalu (Address)</label>
                 <input
@@ -299,16 +314,55 @@
                   name="companyAddress"
                 >
               </div>
+            </div> -->
+
+            <div class="row">
+              <div class="col-lg-6 col-12 mt-3">
+                <label for="companyAddress">Nazwa ulicy</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyAddress"
+                  name="companyAddress"
+                >
+              </div>
+              <div class="col-lg-3 col-12 mt-3">
+                <label for="companyNrDomu">Numer domu</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyNrDomu"
+                  name="companyNrDomu"
+                >
+              </div>
+              <div class="col-lg-3 col-12 mt-3">
+                <label for="companyNrLokalu">Numer lokalu</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyNrLokalu"
+                  name="companyNrLokalu"
+                >
+              </div>
             </div>
 
             <div class="row">
-              <div class="col-lg-6 col-xs-12 mt-3">
+              <div class="col-lg-3 col-12 mt-3">
                 <label for="companyZip">Kod pocztowy (Postal code)</label>
                 <input
                   type="text"
                   class="form-control"
                   [(ngModel)]="user.companyZip"
                   name="comnanyZip"
+                >
+              </div>
+              <div class="col-lg-3 col-12 mt-3">
+                <label for="companyPoczta">Poczta (Post)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="user.companyPoczta"
+                  name="comnanyPoczta"
                 >
               </div>
               <div class="col-lg-6 col-xs-12 mt-3">
@@ -330,31 +384,7 @@
             </div>
           </div>
 
-          <div class="row  mt-3">
-            <div class="form-check ml-3 col-12">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="rodo"
-                value="rodo"
-                #regulamin="ngModel"
-                [(ngModel)]="user.rodo"
-                name="rodo"
-                required
-              >
-              <label
-                class="fs-15"
-                for="rodo"
-              > Oświadczenie <a
-                  href="#"
-                  target="_blank"
-                >RODO</a> (I accept General Data Protection Regulation)
-                <span class="invalid">*</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
+          <div class="row mt-3">
             <div class="form-check ml-3 col-12">
               <input
                 class="form-check-input"

@@ -9,14 +9,17 @@ export class User {
   institution: string;
   phoneNumber: string;
   preconference: string;
-  regularconference: string;
+  regularConference: string;
   doctorPoints: boolean;
-  doctorNumber: string;
+  doctorLicenseNumber: string;
   fv: string;
   companyName: string;
   companyNip: string;
   companyAddress: string;
+  companyNrDomu: string;
+  companyNrLokalu: string;
   companyZip: string;
+  companyPoczta: string;
   companyCity: string;
   totalPrice: any;
   contributionPayed: any;
@@ -29,36 +32,73 @@ export class User {
 })
 export class RejestracjaComponent implements OnInit {
   user: User;
-  activeMember: boolean;
+  activeMember: boolean = false;
   secondStep: boolean = false;
   formSubmited: boolean = false;
   conferencePrice: number = 900;
 
-  preconference: object[] = [
+  preconferenceActiveMember: object[] = [
     {
-      value: "Prekonferencja - Nie chcę brać udziału",
-      title: "Prekonferencja - Nie chcę brać udziału"
+      value: "Prosze wybrać",
+      title: "Prosze wybrać"
     },
-    { value: "Prekonferenca warsztat 1", title: "Prekonferenca warsztat 1" },
-    { value: "Prekonferenca warsztat 2", title: "Prekonferenca warsztat 2" },
     {
-      value: "Prekonferenca warsztat 3",
-      title: "Prekonferenca warsztat 3",
-      disabled: true
-    }
+      value: "Nie chcę brać udziału",
+      title: "Nie chcę brać udziału"
+    },
+    {
+      value: "Frank Datillo CBT with couples - 300zł",
+      title: "Frank Datillo: CBT with couples - 300zł"
+    },
+    {
+      value: "Robert Leahy Emotional schema therapy - 300zł",
+      title: "Robert Leahy: Emotional schema therapy - 300zł"
+    },
+    { value: "Michaela Swales - 100zł", title: "Michaela Swales - 100zł" }
   ];
 
-  regularconference: object[] = [
+  preconference: object[] = [
     {
-      value: "Warsztat konferencja - Nie chcę brać udziału",
-      title: "Warsztat konferencja - Nie chcę brać udziału"
+      value: "Prosze wybrać",
+      title: "Prosze wybrać"
     },
-    { value: "Warsztat 1", title: "Warsztat 1" },
-    { value: "Warsztat 2", title: "Warsztat 2" },
     {
-      value: "Warsztat 3",
-      title: "Warsztat 3",
-      disabled: true
+      value: "Nie chcę brać udziału",
+      title: "Nie chcę brać udziału"
+    },
+    {
+      value: "Frank Datillo CBT with couples - 400zł",
+      title: "Frank Datillo: CBT with couples - 400zł"
+    },
+    {
+      value: "Robert Leahy Emotional schema therapy - 400zł",
+      title: "Robert Leahy: Emotional schema therapy - 400zł"
+    },
+    { value: "Michaela Swales -200zł", title: "Michaela Swales - 200zł" }
+  ];
+
+  regularConference: object[] = [
+    {
+      value: "Prosze wybrać",
+      title: "Prosze wybrać"
+    },
+    {
+      value: "Nie chcę brać udziału",
+      title: "Nie chcę brać udziału"
+    },
+    {
+      value: "Eduardo Keegan: Just do it! Dealing with procrastination - 150zł",
+      title: "Eduardo Keegan: Just do it! Dealing with procrastination - 150zł"
+    },
+    {
+      value: "Frank Datillo: CBT with families - 150zł",
+      title: "Frank Datillo: CBT with families - 150zł"
+    },
+    {
+      value:
+        "Małgorzata Bielak: Praca z trybami w narcystycznym zaburzeniu osobowości - 30zł",
+      title:
+        "Małgorzata Bielak: Praca z trybami w narcystycznym zaburzeniu osobowości - 30zł"
     }
   ];
 
@@ -72,36 +112,39 @@ export class RejestracjaComponent implements OnInit {
       surname: "",
       institution: "",
       phoneNumber: "",
-      doctorNumber: "",
+      doctorLicenseNumber: "",
       doctorPoints: false,
-      preconference: "Prekonferencja - Nie chcę brać udziału",
-      regularconference: "Warsztaty - Nie chcę brać udziału",
+      preconference: "Prosze wybrać",
+      regularConference: "Prosze wybrać",
       fv: "Nie dziękuję",
       companyName: "",
       companyNip: "",
       companyAddress: "",
+      companyNrDomu: "",
+      companyNrLokalu: "",
       companyZip: "",
+      companyPoczta: "",
       companyCity: "",
       totalPrice: "",
       contributionPayed: ""
     };
   }
 
-  getMember() {
-    this.http
-      .get(`https://api.system.pttpb.pl/users/exists?email=${this.user.email}`)
-      .subscribe((data: statusMember) => {
-        this.activeMember = data.payed;
-        this.activeMember
-          ? (this.conferencePrice = 750)
-          : (this.conferencePrice = 900);
-        this.secondStep = true;
-      });
-  }
+  // getMember() {
+  //   this.http
+  //     .get(`https://api.system.pttpb.pl/users/exists?email=${this.user.email}`)
+  //     .subscribe((data: statusMember) => {
+  //       this.activeMember = data.payed;
+  //       this.activeMember
+  //         ? (this.conferencePrice = 750)
+  //         : (this.conferencePrice = 900);
+  //       this.secondStep = true;
+  //     });
+  // }
 
   processForm() {
     this.user.totalPrice = this.conferencePrice;
-    this.user.contributionPayed = this.activeMember;
+    //this.user.contributionPayed = this.activeMember;
     //console.log('mas', this.user)
     this.http
       .post("backend/insert.php", this.user)
@@ -116,10 +159,12 @@ export class RejestracjaComponent implements OnInit {
 
   getPrice($event) {
     if (this.activeMember) {
+      console.log("elo", this.user.preconference);
       this.user.preconference == "Prekonferencja - Nie chcę brać udziału"
         ? (this.conferencePrice = 750)
         : (this.conferencePrice = 900);
     } else {
+      console.log("elo2", this.user.preconference);
       this.user.preconference == "Prekonferencja - Nie chcę brać udziału"
         ? (this.conferencePrice = 900)
         : (this.conferencePrice = 1200);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Title } from "@angular/platform-browser";
 
 export class User {
   academicTitle: string;
@@ -9,7 +10,6 @@ export class User {
   institution: string;
   phoneNumber: string;
   preconference: string;
-  regularConference: string;
   doctorPoints: boolean;
   doctorLicenseNumber: string;
   fv: string;
@@ -23,6 +23,7 @@ export class User {
   companyCity: string;
   totalPrice: any;
   contributionPayed: any;
+  workshops: string[];
 }
 
 @Component({
@@ -36,71 +37,95 @@ export class RejestracjaComponent implements OnInit {
   secondStep: boolean = false;
   formSubmited: boolean = false;
   conferencePrice: number = 900;
+  workshop1: boolean;
+  workshop1Price: number;
+  workshop2: boolean;
+  workshop2Price: number;
+  workshop3: boolean;
+  workshop3Price: number;
+  workshop4: boolean;
+  workshop4Price: number;
+  workshop5: boolean;
+  workshop5Price: number;
+  selectedWorkshops: string[] = [];
+  selectedPreconference: string;
+  preconferencePrice: number = 0;
 
   preconferenceActiveMember: object[] = [
+    { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" },
     {
-      value: "Prosze wybrać",
-      title: "Prosze wybrać"
+      regularPrice: 400,
+      membersPrice: 300,
+      author: "Frank Datillo",
+      title: "CBT with couples"
     },
     {
-      value: "Nie chcę brać udziału",
-      title: "Nie chcę brać udziału"
+      regularPrice: 400,
+      membersPrice: 300,
+      author: "Robert Leahy",
+      title: "Emotional schema therapy"
     },
     {
-      value: "Frank Datillo CBT with couples - 300zł",
-      title: "Frank Datillo: CBT with couples - 300zł"
-    },
-    {
-      value: "Robert Leahy Emotional schema therapy - 300zł",
-      title: "Robert Leahy: Emotional schema therapy - 300zł"
-    },
-    { value: "Michaela Swales - 100zł", title: "Michaela Swales - 100zł" }
-  ];
-
-  preconference: object[] = [
-    {
-      value: "Prosze wybrać",
-      title: "Prosze wybrać"
-    },
-    {
-      value: "Nie chcę brać udziału",
-      title: "Nie chcę brać udziału"
-    },
-    {
-      value: "Frank Datillo CBT with couples - 400zł",
-      title: "Frank Datillo: CBT with couples - 400zł"
-    },
-    {
-      value: "Robert Leahy Emotional schema therapy - 400zł",
-      title: "Robert Leahy: Emotional schema therapy - 400zł"
-    },
-    { value: "Michaela Swales -200zł", title: "Michaela Swales - 200zł" }
-  ];
-
-  regularConference: object[] = [
-    {
-      value: "Prosze wybrać",
-      title: "Prosze wybrać"
-    },
-    {
-      value: "Nie chcę brać udziału",
-      title: "Nie chcę brać udziału"
-    },
-    {
-      value: "Eduardo Keegan: Just do it! Dealing with procrastination - 150zł",
-      title: "Eduardo Keegan: Just do it! Dealing with procrastination - 150zł"
-    },
-    {
-      value: "Frank Datillo: CBT with families - 150zł",
-      title: "Frank Datillo: CBT with families - 150zł"
-    },
-    {
-      value:
-        "Małgorzata Bielak: Praca z trybami w narcystycznym zaburzeniu osobowości - 30zł",
-      title:
-        "Małgorzata Bielak: Praca z trybami w narcystycznym zaburzeniu osobowości - 30zł"
+      regularPrice: 200,
+      membersPrice: 100,
+      author: "Michaela Swales",
+      title: ""
     }
   ];
+
+  // preconference: object[] = [
+  //   { regularPrice: 0, title: "Nie chcę brać udziału" },
+  //   {
+  //     regularPrice: 400,
+  //     title: "Frank Datillo CBT with couples"
+  //   },
+  //   {
+  //     regularPrice: 400,
+  //     title: "Robert Leahy Emotional schema therapy"
+  //   },
+  //   { regularPrice: 200, title: "Michaela Swales" }
+  // ];
+
+  workshop1Details: object = {
+    value: "workshop1",
+    author: "Eduardo Keegan",
+    title: "Just do it! Dealing with procrastination",
+    regularPrice: 250,
+    membersPrice: 150
+  };
+
+  workshop2Details: object = {
+    value: "workshop2",
+    author: "Frank Datillo",
+    title: "CBT with families",
+    regularPrice: 250,
+    membersPrice: 150
+  };
+
+  workshop3Details: object = {
+    value: "workshop3",
+    author: "Małgorzata Bielak",
+    title: "Praca z trybami w narcystycznym zaburzeniu osobowości",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
+  workshop4Details: object = {
+    value: "workshop4",
+    author: "Hubert Czupała",
+    title:
+      "Process-based CBT, czyli jak ewoluowały interwencje emocjonalne, poznawcze i behawioralne pod wpływem rozwoju badań nad kluczowymi procesami psychologicznej elastyczności",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
+  workshop5Details: object = {
+    value: "workshop5",
+    author: "Mark Reinicke",
+    title: "CBT with angry and oppositional youth",
+    regularPrice: 250,
+    membersPrice: 150
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -114,8 +139,7 @@ export class RejestracjaComponent implements OnInit {
       phoneNumber: "",
       doctorLicenseNumber: "",
       doctorPoints: false,
-      preconference: "Prosze wybrać",
-      regularConference: "Prosze wybrać",
+      preconference: "Nie chcę brać udziału",
       fv: "Nie dziękuję",
       companyName: "",
       companyNip: "",
@@ -126,7 +150,8 @@ export class RejestracjaComponent implements OnInit {
       companyPoczta: "",
       companyCity: "",
       totalPrice: "",
-      contributionPayed: ""
+      contributionPayed: "",
+      workshops: []
     };
   }
 
@@ -142,9 +167,102 @@ export class RejestracjaComponent implements OnInit {
   //     });
   // }
 
+  getPreconferencePrice($event: any) {
+    console.log("elo", (<HTMLInputElement>event.target).value);
+    let element = event.currentTarget as HTMLInputElement;
+    this.preconferencePrice = parseFloat(element.value);
+  }
+
+  getWorkshop1Price($event) {
+    if (this.workshop1) {
+      this.activeMember
+        ? (this.workshop1Price = 150)
+        : (this.workshop1Price = 250);
+
+      this.conferencePrice = this.conferencePrice + this.workshop1Price;
+      this.selectedWorkshops.push("workshop1");
+    } else {
+      this.selectedWorkshops.splice(
+        this.selectedWorkshops.indexOf("workshop1"),
+        1
+      );
+      this.conferencePrice = this.conferencePrice - this.workshop1Price;
+      this.workshop1Price = undefined;
+    }
+  }
+
+  getWorkshop2Price($event) {
+    if (this.workshop2) {
+      this.activeMember
+        ? (this.workshop2Price = 150)
+        : (this.workshop2Price = 250);
+      this.conferencePrice = this.conferencePrice + this.workshop2Price;
+      this.selectedWorkshops.push("workshop2");
+    } else {
+      this.selectedWorkshops.splice(
+        this.selectedWorkshops.indexOf("workshop2"),
+        1
+      );
+      this.conferencePrice = this.conferencePrice - this.workshop2Price;
+      this.workshop2Price = undefined;
+    }
+  }
+
+  getWorkshop3Price($event) {
+    if (this.workshop3) {
+      this.activeMember
+        ? (this.workshop3Price = 30)
+        : (this.workshop3Price = 60);
+      this.conferencePrice = this.conferencePrice + this.workshop3Price;
+      this.selectedWorkshops.push("workshop3");
+    } else {
+      this.selectedWorkshops.splice(
+        this.selectedWorkshops.indexOf("workshop3"),
+        1
+      );
+      this.conferencePrice = this.conferencePrice - this.workshop3Price;
+      this.workshop3Price = undefined;
+    }
+  }
+
+  getWorkshop4Price($event) {
+    if (this.workshop4) {
+      this.activeMember
+        ? (this.workshop4Price = 30)
+        : (this.workshop4Price = 60);
+      this.conferencePrice = this.conferencePrice + this.workshop4Price;
+      this.selectedWorkshops.push("workshop4");
+    } else {
+      this.selectedWorkshops.splice(
+        this.selectedWorkshops.indexOf("workshop4"),
+        1
+      );
+      this.conferencePrice = this.conferencePrice - this.workshop4Price;
+      this.workshop4Price = undefined;
+    }
+  }
+
+  getWorkshop5Price($event) {
+    if (this.workshop5) {
+      this.activeMember
+        ? (this.workshop5Price = 150)
+        : (this.workshop5Price = 250);
+      this.conferencePrice = this.conferencePrice + this.workshop5Price;
+      this.selectedWorkshops.push("workshop5");
+    } else {
+      this.selectedWorkshops.splice(
+        this.selectedWorkshops.indexOf("workshop5"),
+        1
+      );
+      this.conferencePrice = this.conferencePrice - this.workshop5Price;
+      this.workshop5Price = undefined;
+    }
+  }
+
   processForm() {
-    this.user.totalPrice = this.conferencePrice;
-    //this.user.contributionPayed = this.activeMember;
+    this.user.totalPrice = this.conferencePrice + this.preconferencePrice;
+    this.user.workshops = this.selectedWorkshops;
+    this.user.preconference = this.selectedPreconference;
     //console.log('mas', this.user)
     this.http
       .post("backend/insert.php", this.user)
@@ -155,20 +273,6 @@ export class RejestracjaComponent implements OnInit {
           console.error(response.data.error);
         }
       });
-  }
-
-  getPrice($event) {
-    if (this.activeMember) {
-      console.log("elo", this.user.preconference);
-      this.user.preconference == "Prekonferencja - Nie chcę brać udziału"
-        ? (this.conferencePrice = 750)
-        : (this.conferencePrice = 900);
-    } else {
-      console.log("elo2", this.user.preconference);
-      this.user.preconference == "Prekonferencja - Nie chcę brać udziału"
-        ? (this.conferencePrice = 900)
-        : (this.conferencePrice = 1200);
-    }
   }
 }
 

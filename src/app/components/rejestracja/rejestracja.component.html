@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <!-- Formularz zgłoszeniowy-->
-    <div class="col-lg-8 mb-4">
+    <div class="col-lg-9 mb-4">
       <div *ngIf="!formSubmited">
         <h4>Formularz rejestracji (Registration form)</h4>
 
@@ -152,85 +152,163 @@
           </div>
 
           <!-- Prekonferencja -->
-          <div class="row">
+          <!-- <div class="row">
             <div class="form-group col-lg-8 col-12 mt-3">
               <label for="preconferenceWorkshop">Warsztaty przed konferencyjne (Pre-congress workshops) <span
                   class="invalid"
                 >*</span></label>
-              <!-- active member-->
+              
               <select
                 *ngIf="activeMember"
                 class="custom-select"
-                [(ngModel)]="user.preconference"
+                [(ngModel)]="selectedPreconference"
                 name="preconference"
-                (change)="getPrice($event)"
+                (change)="getPreconferencePrice($event)"
               >
                 <option
                   *ngFor="let item of preconferenceActiveMember"
-                  [ngValue]="item.value"
+                  [ngValue]="item.price"
                   [ngClass]="{'strike': item.disabled}"
                   [disabled]="item.disabled"
-                >{{item.title}}</option>
+                >{{item.title}} - {{item.price}} zł</option>
               </select>
-              <!-- not active member-->
+              
               <select
                 *ngIf="!activeMember"
                 class="custom-select"
-                [(ngModel)]="user.preconference"
+                [(ngModel)]="selectedPreconference"
                 name="preconference"
-                (change)="getPrice($event)"
+                (change)="getPreconferencePrice($event)"
               >
                 <option
                   *ngFor="let item of preconference"
-                  [ngValue]="item.value"
+                  [ngValue]="item.price"
                   [ngClass]="{'strike': item.disabled}"
                   [disabled]="item.disabled"
-                >{{item.title}}</option>
+                >{{item.title}} - {{item.price}} zł</option>
               </select>
+            </div>
+          </div> -->
+
+          <div class="row">
+            <div class="col-12">
+              <hr>
+              <p class="h6 mb-4">Warsztaty przed konferencyjne (Pre-congress workshops) </p>
               <div
-                class="fs-12 invalid"
-                *ngIf="preconference.touched && !preconference.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="preconference.touched && preconference.valid"
-              >Wygląda dobrze</div>
+                class="ml-3"
+                *ngFor="let item of preconferenceActiveMember ; let i = index"
+              >
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="preconference-{{i}}"
+                  name="preconference"
+                  value="{{item.regularPrice}}"
+                  (change)="getPreconferencePrice($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="preconference-{{i}}"
+                ><span *ngIf="item.author"><b>{{item.author}}</b>:</span> {{item.title}} -
+                  {{ activeMember ? item.membersPrice : item.regularPrice }} zł
+                </label>
+              </div>
             </div>
           </div>
 
           <!-- Warsztaty -->
           <div class="row">
-            <div class="form-group col-lg-8 col-12 mt-3">
-              <label for="regularconferenceWorkshop">Warsztaty konferencyjne (In-congress workshops) <span
-                  class="invalid"
-                >*</span></label>
-              <select
-                class="custom-select"
-                [(ngModel)]="user.regularConference"
-                name="regularConference"
-                (change)="getPrice($event)"
-              >
-                <option value="">Proszę wybrać</option>
-                <option
-                  *ngFor="let item of regularConference"
-                  [ngValue]="item.value"
-                  [ngClass]="{'strike': item.disabled}"
-                  [disabled]="item.disabled"
-                >{{item.title}}</option>
-              </select>
-              <div
-                class="fs-12 invalid"
-                *ngIf="regularConference.touched && !regularConference.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="regularConference.touched && regularConference.valid"
-              >Wygląda dobrze</div>
+            <div class="form-group col-12 mt-4 mb-0">
+              <p class="h6 mb-4">Warsztaty konferencyjne (In-congress workshops)</p>
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop1Details.value}}"
+                  [(ngModel)]="workshop1"
+                  name="{{workshop1Details.value}}"
+                  (change)="getWorkshop1Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop1Details.value}}"
+                ><b>{{workshop1Details.author}}</b>: {{workshop1Details.title}} -
+                  {{ activeMember ? workshop1Details.membersPrice : workshop1Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop2Details.value}}"
+                  [(ngModel)]="workshop2"
+                  name="{{workshop2Details.value}}"
+                  (change)="getWorkshop2Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop2Details.value}}"
+                ><b>{{workshop2Details.author}}</b>: {{workshop2Details.title}} -
+                  {{ activeMember ? workshop2Details.membersPrice : workshop2Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop3Details.value}}"
+                  [(ngModel)]="workshop3"
+                  name="{{workshop3Details.value}}"
+                  (change)="getWorkshop3Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop3Details.value}}"
+                ><b>{{workshop3Details.author}}</b>: {{workshop3Details.title}} -
+                  {{ activeMember ? workshop3Details.membersPrice : workshop3Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop4Details.value}}"
+                  [(ngModel)]="workshop4"
+                  name="{{workshop4Details.value}}"
+                  (change)="getWorkshop4Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop4Details.value}}"
+                ><b>{{workshop4Details.author}}</b>: {{workshop4Details.title}} -
+                  {{ activeMember ? workshop4Details.membersPrice : workshop4Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop5Details.value}}"
+                  [(ngModel)]="workshop5"
+                  name="{{workshop5Details.value}}"
+                  (change)="getWorkshop5Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop5Details.value}}"
+                ><b>{{workshop5Details.author}}</b>: {{workshop5Details.title}} -
+                  {{ activeMember ? workshop5Details.membersPrice : workshop5Details.regularPrice }} zł
+                </label>
+              </div>
             </div>
           </div>
-
+          <hr>
           <div class="row mt-3">
-            <div class="form-check ml-3 col-12">
+            <div class="form-check ml-3 mb-0 col-12">
               <input
                 class="form-check-input"
                 type="checkbox"
@@ -241,32 +319,38 @@
                 name="doctorPoints"
               >
               <label
-                class="fs-15"
+                class="fs-15 mb-0"
                 for="doctorPoints"
               > Chcę otrzymać zaświadczenie o punktach lekarskich
               </label>
             </div>
           </div>
 
-          <div *ngIf="user.doctorPoints">
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <label for="doctorLicenseNumber">Numer prawa wykonywania zawodu</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.doctorLicenseNumber"
-                  name="doctorLicenseNumber"
-                >
-              </div>
+
+          <div
+            *ngIf="user.doctorPoints"
+            class="row mt-3"
+          >
+            <div class="col-lg-6 col-12">
+              <label for="doctorLicenseNumber">Numer prawa wykonywania zawodu</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="user.doctorLicenseNumber"
+                name="doctorLicenseNumber"
+              >
             </div>
           </div>
+
 
           <!-- Faktura VAT -->
           <div class="row">
             <div class="form-group col-12">
               <hr>
-              <label for="fv">Dane do faktury (Invoice data) (prosimy o podanie danych firmy, instytucji na którą ma
+              <label
+                class="col-12 pl-0 mb-3"
+                for="fv"
+              >Dane do faktury (Invoice data) (prosimy o podanie danych firmy, instytucji na którą ma
                 być
                 wystawiony
                 dokument)</label>
@@ -380,7 +464,7 @@
           <div class="row">
             <div class="col-12 mt-3">
               <hr>
-              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice}} zł</h5>
+              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice + preconferencePrice}} zł</h5>
             </div>
           </div>
 
@@ -409,12 +493,12 @@
               </label>
             </div>
             <a
-              class="btn btn-outline-info disabled"
+              class="btn btn-outline-info disabled mt-3"
               *ngIf="!regulamin.valid"
             >Wyślij zgłoszenie - zaznacz, że zapoznałeś/łaś się z regulaminem</a>
             <button
               type="submit"
-              class="btn btn-success mt-2 btn-block col-w"
+              class="btn btn-success mt-3 btn-block col-w"
               *ngIf="regulamin.valid"
             >Wyślij zgłoszenie</button>
           </div>

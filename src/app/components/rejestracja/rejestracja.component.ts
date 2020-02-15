@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Title } from "@angular/platform-browser";
 
 export class User {
   academicTitle: string;
@@ -51,7 +50,7 @@ export class RejestracjaComponent implements OnInit {
   selectedPreconference: string;
   preconferencePrice: number = 0;
 
-  preconferenceActiveMember: object[] = [
+  preconference: object[] = [
     { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" },
     {
       regularPrice: 400,
@@ -72,19 +71,6 @@ export class RejestracjaComponent implements OnInit {
       title: ""
     }
   ];
-
-  // preconference: object[] = [
-  //   { regularPrice: 0, title: "Nie chcę brać udziału" },
-  //   {
-  //     regularPrice: 400,
-  //     title: "Frank Datillo CBT with couples"
-  //   },
-  //   {
-  //     regularPrice: 400,
-  //     title: "Robert Leahy Emotional schema therapy"
-  //   },
-  //   { regularPrice: 200, title: "Michaela Swales" }
-  // ];
 
   workshop1Details: object = {
     value: "workshop1",
@@ -167,40 +153,57 @@ export class RejestracjaComponent implements OnInit {
   //     });
   // }
 
+  getBasePrice() {
+    console.log("mas", this.activeMember);
+    this.activeMember
+      ? (this.conferencePrice = 750)
+      : (this.conferencePrice = 900);
+  }
+
   getPreconferencePrice($event: any) {
-    console.log("elo", (<HTMLInputElement>event.target).value);
     let element = event.currentTarget as HTMLInputElement;
+
     this.preconferencePrice = parseFloat(element.value);
+    this.selectedPreconference = element.id;
   }
 
   getWorkshop1Price($event) {
+    let workshopSelected = event.currentTarget as HTMLInputElement;
+    let workshopTitle = workshopSelected.value;
+
     if (this.workshop1) {
       this.activeMember
         ? (this.workshop1Price = 150)
         : (this.workshop1Price = 250);
 
       this.conferencePrice = this.conferencePrice + this.workshop1Price;
-      this.selectedWorkshops.push("workshop1");
+      this.selectedWorkshops.push(workshopTitle);
     } else {
       this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf("workshop1"),
+        this.selectedWorkshops.indexOf(workshopTitle),
         1
       );
+
       this.conferencePrice = this.conferencePrice - this.workshop1Price;
       this.workshop1Price = undefined;
     }
   }
 
   getWorkshop2Price($event) {
+    let workshopSelected = event.currentTarget as HTMLInputElement;
+    let workshopTitle = workshopSelected.value;
+
     if (this.workshop2) {
       this.activeMember
         ? (this.workshop2Price = 150)
         : (this.workshop2Price = 250);
+
       this.conferencePrice = this.conferencePrice + this.workshop2Price;
-      this.selectedWorkshops.push("workshop2");
+
+      this.selectedWorkshops.push(workshopTitle);
     } else {
       this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf("workshop2"),
+        this.selectedWorkshops.indexOf(workshopTitle),
         1
       );
       this.conferencePrice = this.conferencePrice - this.workshop2Price;
@@ -209,15 +212,18 @@ export class RejestracjaComponent implements OnInit {
   }
 
   getWorkshop3Price($event) {
+    let workshopSelected = event.currentTarget as HTMLInputElement;
+    let workshopTitle = workshopSelected.value;
+
     if (this.workshop3) {
       this.activeMember
         ? (this.workshop3Price = 30)
         : (this.workshop3Price = 60);
       this.conferencePrice = this.conferencePrice + this.workshop3Price;
-      this.selectedWorkshops.push("workshop3");
+      this.selectedWorkshops.push(workshopTitle);
     } else {
       this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf("workshop3"),
+        this.selectedWorkshops.indexOf(workshopTitle),
         1
       );
       this.conferencePrice = this.conferencePrice - this.workshop3Price;
@@ -226,15 +232,18 @@ export class RejestracjaComponent implements OnInit {
   }
 
   getWorkshop4Price($event) {
+    let workshopSelected = event.currentTarget as HTMLInputElement;
+    let workshopTitle = workshopSelected.value;
+
     if (this.workshop4) {
       this.activeMember
         ? (this.workshop4Price = 30)
         : (this.workshop4Price = 60);
       this.conferencePrice = this.conferencePrice + this.workshop4Price;
-      this.selectedWorkshops.push("workshop4");
+      this.selectedWorkshops.push(workshopTitle);
     } else {
       this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf("workshop4"),
+        this.selectedWorkshops.indexOf(workshopTitle),
         1
       );
       this.conferencePrice = this.conferencePrice - this.workshop4Price;
@@ -243,15 +252,18 @@ export class RejestracjaComponent implements OnInit {
   }
 
   getWorkshop5Price($event) {
+    let workshopSelected = event.currentTarget as HTMLInputElement;
+    let workshopTitle = workshopSelected.value;
+
     if (this.workshop5) {
       this.activeMember
         ? (this.workshop5Price = 150)
         : (this.workshop5Price = 250);
       this.conferencePrice = this.conferencePrice + this.workshop5Price;
-      this.selectedWorkshops.push("workshop5");
+      this.selectedWorkshops.push(workshopTitle);
     } else {
       this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf("workshop5"),
+        this.selectedWorkshops.indexOf(workshopTitle),
         1
       );
       this.conferencePrice = this.conferencePrice - this.workshop5Price;
@@ -260,10 +272,11 @@ export class RejestracjaComponent implements OnInit {
   }
 
   processForm() {
-    this.user.totalPrice = this.conferencePrice + this.preconferencePrice;
+    this.user.totalPrice =
+      this.conferencePrice + this.preconferencePrice + this.workshop1Price;
     this.user.workshops = this.selectedWorkshops;
     this.user.preconference = this.selectedPreconference;
-    //console.log('mas', this.user)
+    console.log("mas", this.user);
     this.http
       .post("backend/insert.php", this.user)
       .subscribe((response: any) => {

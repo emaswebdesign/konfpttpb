@@ -66,6 +66,8 @@ import { KonferencjaStudenckaComponent } from "./components/konferencja-studenck
 import { EnKonferencjaStudenckaComponent } from "./components/en-konferencja-studencka/en-konferencja-studencka.component";
 import { EnCennikComponent } from "./components/en-cennik/en-cennik.component";
 import { CennikComponent } from "./components/cennik/cennik.component";
+import { WieslawJerzyCubalaComponent } from './components/wieslaw-jerzy-cubala/wieslaw-jerzy-cubala.component';
+import { EnWieslawJerzyCubalaComponent } from './components/en-wieslaw-jerzy-cubala/en-wieslaw-jerzy-cubala.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -88,6 +90,8 @@ const appRoutes: Routes = [
   { path: "en-cory-newman", component: EnCoryNewmanComponent },
   { path: "mark-reinecke", component: MarkReineckeComponent },
   { path: "en-mark-reinecke", component: EnMarkReineckeComponent },
+  { path: "wieslaw-jerzy-cubala", component: WieslawJerzyCubalaComponent },
+  { path: "en-wieslaw-jerzy-cubala", component: EnWieslawJerzyCubalaComponent },
   { path: "eduardo-keegan", component: EduardoKeeganComponent },
   { path: "en-eduardo-keegan", component: EnEduardoKeeganComponent },
   { path: "robert-leahy", component: RobertLeahyComponent },
@@ -185,7 +189,9 @@ const appRoutes: Routes = [
     KonferencjaStudenckaComponent,
     EnKonferencjaStudenckaComponent,
     EnCennikComponent,
-    CennikComponent
+    CennikComponent,
+    WieslawJerzyCubalaComponent,
+    EnWieslawJerzyCubalaComponent
   ],
   imports: [
     BrowserModule,

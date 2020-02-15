@@ -140,7 +140,9 @@
                 id="activeMember"
                 [(ngModel)]="activeMember"
                 name="activeMember"
+                (change)="getBasePrice()"
               >
+
               <label
                 class="fs-15"
                 for="activeMember"
@@ -151,64 +153,26 @@
             </div>
           </div>
 
-          <!-- Prekonferencja -->
-          <!-- <div class="row">
-            <div class="form-group col-lg-8 col-12 mt-3">
-              <label for="preconferenceWorkshop">Warsztaty przed konferencyjne (Pre-congress workshops) <span
-                  class="invalid"
-                >*</span></label>
-              
-              <select
-                *ngIf="activeMember"
-                class="custom-select"
-                [(ngModel)]="selectedPreconference"
-                name="preconference"
-                (change)="getPreconferencePrice($event)"
-              >
-                <option
-                  *ngFor="let item of preconferenceActiveMember"
-                  [ngValue]="item.price"
-                  [ngClass]="{'strike': item.disabled}"
-                  [disabled]="item.disabled"
-                >{{item.title}} - {{item.price}} zł</option>
-              </select>
-              
-              <select
-                *ngIf="!activeMember"
-                class="custom-select"
-                [(ngModel)]="selectedPreconference"
-                name="preconference"
-                (change)="getPreconferencePrice($event)"
-              >
-                <option
-                  *ngFor="let item of preconference"
-                  [ngValue]="item.price"
-                  [ngClass]="{'strike': item.disabled}"
-                  [disabled]="item.disabled"
-                >{{item.title}} - {{item.price}} zł</option>
-              </select>
-            </div>
-          </div> -->
-
           <div class="row">
             <div class="col-12">
               <hr>
               <p class="h6 mb-4">Warsztaty przed konferencyjne (Pre-congress workshops) </p>
+
               <div
                 class="ml-3"
-                *ngFor="let item of preconferenceActiveMember ; let i = index"
+                *ngFor="let item of preconference"
               >
                 <input
                   class="form-check-input"
                   type="radio"
-                  id="preconference-{{i}}"
+                  id="{{item.title}}"
                   name="preconference"
-                  value="{{item.regularPrice}}"
+                  value="{{ activeMember ? item.membersPrice : item.regularPrice }}"
                   (change)="getPreconferencePrice($event)"
                 >
                 <label
                   class="fs-15"
-                  for="preconference-{{i}}"
+                  for="{{item.title}}"
                 ><span *ngIf="item.author"><b>{{item.author}}</b>:</span> {{item.title}} -
                   {{ activeMember ? item.membersPrice : item.regularPrice }} zł
                 </label>
@@ -227,6 +191,7 @@
                   id="{{workshop1Details.value}}"
                   [(ngModel)]="workshop1"
                   name="{{workshop1Details.value}}"
+                  value="{{workshop1Details.title}}"
                   (change)="getWorkshop1Price($event)"
                 >
                 <label
@@ -244,6 +209,7 @@
                   id="{{workshop2Details.value}}"
                   [(ngModel)]="workshop2"
                   name="{{workshop2Details.value}}"
+                  value="{{workshop2Details.title}}"
                   (change)="getWorkshop2Price($event)"
                 >
                 <label
@@ -261,6 +227,7 @@
                   id="{{workshop3Details.value}}"
                   [(ngModel)]="workshop3"
                   name="{{workshop3Details.value}}"
+                  value="{{workshop3Details.title}}"
                   (change)="getWorkshop3Price($event)"
                 >
                 <label
@@ -278,6 +245,7 @@
                   id="{{workshop4Details.value}}"
                   [(ngModel)]="workshop4"
                   name="{{workshop4Details.value}}"
+                  value="{{workshop4Details.title}}"
                   (change)="getWorkshop4Price($event)"
                 >
                 <label
@@ -295,6 +263,7 @@
                   id="{{workshop5Details.value}}"
                   [(ngModel)]="workshop5"
                   name="{{workshop5Details.value}}"
+                  value="{{workshop5Details.title}}"
                   (change)="getWorkshop5Price($event)"
                 >
                 <label
@@ -464,7 +433,9 @@
           <div class="row">
             <div class="col-12 mt-3">
               <hr>
-              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice + preconferencePrice}} zł</h5>
+              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice + preconferencePrice}}
+                zł
+              </h5>
             </div>
           </div>
 

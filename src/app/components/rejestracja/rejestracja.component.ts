@@ -46,6 +46,8 @@ export class RejestracjaComponent implements OnInit {
   workshop4Price: number;
   workshop5: boolean;
   workshop5Price: number;
+  workshop6: boolean;
+  workshop6Price: number;
   selectedWorkshops: string[] = [];
   selectedPreconference: string;
   preconferencePrice: number = 0;
@@ -68,7 +70,7 @@ export class RejestracjaComponent implements OnInit {
       regularPrice: 200,
       membersPrice: 100,
       author: "Michaela Swales",
-      title: ""
+      title: "workshop title"
     }
   ];
 
@@ -163,7 +165,6 @@ export class RejestracjaComponent implements OnInit {
   // }
 
   getBasePrice() {
-    console.log("mas", this.activeMember);
     this.activeMember
       ? (this.conferencePrice = 750)
       : (this.conferencePrice = 900);
@@ -281,11 +282,10 @@ export class RejestracjaComponent implements OnInit {
   }
 
   processForm() {
-    this.user.totalPrice =
-      this.conferencePrice + this.preconferencePrice + this.workshop1Price;
+    this.user.totalPrice = this.conferencePrice + this.preconferencePrice;
     this.user.workshops = this.selectedWorkshops;
     this.user.preconference = this.selectedPreconference;
-    console.log("mas", this.user);
+    //console.log("mas", this.user);
     this.http
       .post("backend/insert.php", this.user)
       .subscribe((response: any) => {

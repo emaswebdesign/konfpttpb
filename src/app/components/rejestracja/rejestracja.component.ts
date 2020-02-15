@@ -113,6 +113,15 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 150
   };
 
+  workshop6Details: object = {
+    value: "workshop6",
+    author: "Mark Agnieszka Popiel, Ewa Pragłowska",
+    title:
+      "Skuteczne działanie w stresie – poznawczo-behawioralny program profilaktyki",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {

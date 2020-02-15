@@ -273,6 +273,24 @@
                   {{ activeMember ? workshop5Details.membersPrice : workshop5Details.regularPrice }} zł
                 </label>
               </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop6Details.value}}"
+                  [(ngModel)]="workshop6"
+                  name="{{workshop6Details.value}}"
+                  value="{{workshop6Details.title}}"
+                  (change)="getWorkshop6Price($event)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop6Details.value}}"
+                ><b>{{workshop6Details.author}}</b>: {{workshop6Details.title}} -
+                  {{ activeMember ? workshop6Details.membersPrice : workshop6Details.regularPrice }} zł
+                </label>
+              </div>
             </div>
           </div>
           <hr>

@@ -66,8 +66,9 @@ import { KonferencjaStudenckaComponent } from "./components/konferencja-studenck
 import { EnKonferencjaStudenckaComponent } from "./components/en-konferencja-studencka/en-konferencja-studencka.component";
 import { EnCennikComponent } from "./components/en-cennik/en-cennik.component";
 import { CennikComponent } from "./components/cennik/cennik.component";
-import { WieslawJerzyCubalaComponent } from './components/wieslaw-jerzy-cubala/wieslaw-jerzy-cubala.component';
-import { EnWieslawJerzyCubalaComponent } from './components/en-wieslaw-jerzy-cubala/en-wieslaw-jerzy-cubala.component';
+import { WieslawJerzyCubalaComponent } from "./components/wieslaw-jerzy-cubala/wieslaw-jerzy-cubala.component";
+import { EnWieslawJerzyCubalaComponent } from "./components/en-wieslaw-jerzy-cubala/en-wieslaw-jerzy-cubala.component";
+import { WarsztatyComponent } from "./components/warsztaty/warsztaty.component";
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -125,6 +126,7 @@ const appRoutes: Routes = [
     path: "en-konferencja-studencka",
     component: EnKonferencjaStudenckaComponent
   },
+  { path: "warsztaty", component: WarsztatyComponent },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -191,7 +193,8 @@ const appRoutes: Routes = [
     EnCennikComponent,
     CennikComponent,
     WieslawJerzyCubalaComponent,
-    EnWieslawJerzyCubalaComponent
+    EnWieslawJerzyCubalaComponent,
+    WarsztatyComponent
   ],
   imports: [
     BrowserModule,

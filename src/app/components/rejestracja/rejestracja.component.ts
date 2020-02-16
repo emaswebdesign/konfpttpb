@@ -26,11 +26,11 @@ export class User {
 }
 
 interface IWorkshop {
-    regularPrice: number;
-    membersPrice: number;
-    title: string;
-    author?: string;
-    value?: string;
+  regularPrice: number;
+  membersPrice: number;
+  title: string;
+  author?: string;
+  value?: string;
 }
 
 @Component({
@@ -60,10 +60,7 @@ export class RejestracjaComponent implements OnInit {
   selectedWorkshops: IWorkshop[] = [];
   selectedPreconferenceWorkshop: IWorkshop;
 
-
-
   preconference: IWorkshop[] = [
-    { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" },
     {
       regularPrice: 400,
       membersPrice: 300,
@@ -80,8 +77,10 @@ export class RejestracjaComponent implements OnInit {
       regularPrice: 200,
       membersPrice: 100,
       author: "Michaela Swales",
-      title: "workshop title"
-    }
+      title:
+        "Conceptualising and treating high- risk and complexity: What does DBT have to offer"
+    },
+    { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" }
   ];
 
   workshop1Details: IWorkshop = {
@@ -127,9 +126,44 @@ export class RejestracjaComponent implements OnInit {
 
   workshop6Details: IWorkshop = {
     value: "workshop6",
-    author: "Mark Agnieszka Popiel, Ewa Pragłowska",
+    author: "Agnieszka Popiel, Ewa Pragłowska",
     title:
       "Skuteczne działanie w stresie – poznawczo-behawioralny program profilaktyki",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
+  workshop7Details: IWorkshop = {
+    value: "workshop7",
+    author: "Hanna Malinowska - Wikaryjczyk, Agnieszka Wroczyńska",
+    title:
+      "Wystarczająco dobrze naprawdę wystarczy - transdiagnostyczne podejście do terapii perfekcjonizmu",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
+  workshop8Details: IWorkshop = {
+    value: "workshop8",
+    author: "Cory Newan",
+    title:
+      "Treating Bipolar Disorder with CBT and Family-Focused Interventions",
+    regularPrice: 250,
+    membersPrice: 150
+  };
+
+  workshop9Details: IWorkshop = {
+    value: "workshop9",
+    author: "Anita Bryńska, Nina Szalas",
+    title:
+      "Terapia poznawczo-behawioralna zaburzeń związanych z zaburzeniem obsesyjno-kompulsyjnym (dysmorfofobia, zespół zbieractwa, trichotillomania)",
+    regularPrice: 60,
+    membersPrice: 30
+  };
+
+  workshop10Details: IWorkshop = {
+    value: "workshop10",
+    author: "Jacek Legierski, Joachim Kowalski",
+    title: "Kluczowe techniki terapii metapoznawczej",
     regularPrice: 60,
     membersPrice: 30
   };
@@ -180,40 +214,44 @@ export class RejestracjaComponent implements OnInit {
   }
 
   getBasePrice(): number {
-      if (this.activeMember) {
-          return 750;
-      } else {
-          return 900;
-      }
+    if (this.activeMember) {
+      return 750;
+    } else {
+      return 900;
+    }
   }
 
   getPreconferenceWorkshopPrice(): number {
-      if (this.selectedPreconferenceWorkshop) {
-        if (this.activeMember) {
-            return this.selectedPreconferenceWorkshop.membersPrice;
-        } else {
-            return this.selectedPreconferenceWorkshop.regularPrice;
-        }
+    if (this.selectedPreconferenceWorkshop) {
+      if (this.activeMember) {
+        return this.selectedPreconferenceWorkshop.membersPrice;
       } else {
-          return 0;
+        return this.selectedPreconferenceWorkshop.regularPrice;
       }
+    } else {
+      return 0;
+    }
   }
 
   getWorkshopsPrice(): number {
     const prices = this.selectedWorkshops.map(workshop => {
-        if (this.activeMember) {
-            return workshop.membersPrice;
-        } else {
-            return workshop.regularPrice;
-        }
+      if (this.activeMember) {
+        return workshop.membersPrice;
+      } else {
+        return workshop.regularPrice;
+      }
     });
     return prices.reduce((acc, currentValue) => {
-        return acc + currentValue;
+      return acc + currentValue;
     }, 0);
   }
 
   getPrice(): number {
-      return this.getBasePrice() + this.getPreconferenceWorkshopPrice() + this.getWorkshopsPrice()
+    return (
+      this.getBasePrice() +
+      this.getPreconferenceWorkshopPrice() +
+      this.getWorkshopsPrice()
+    );
   }
 
   onPreconferenceWorkshopChange(workshop: IWorkshop): void {
@@ -224,18 +262,22 @@ export class RejestracjaComponent implements OnInit {
   onWorkshopChange(workshop: IWorkshop): void {
     const index = this.selectedWorkshops.indexOf(workshop);
     if (index > -1) {
-        this.selectedWorkshops.splice(index, 1);
+      this.selectedWorkshops.splice(index, 1);
     } else {
-        this.selectedWorkshops.push(workshop);
+      this.selectedWorkshops.push(workshop);
     }
     this.updatePrice();
   }
 
   processForm() {
     this.user.totalPrice = this.getPrice();
-    this.user.workshops = this.selectedWorkshops.map(workshop => workshop.title).filter(i => !!i);
-    this.user.preconference = this.selectedPreconferenceWorkshop && this.selectedPreconferenceWorkshop.title;
-    //console.log("mas", this.user);
+    this.user.workshops = this.selectedWorkshops
+      .map(workshop => workshop.title)
+      .filter(i => !!i);
+    this.user.preconference =
+      this.selectedPreconferenceWorkshop &&
+      this.selectedPreconferenceWorkshop.title;
+    console.log("mas", this.user);
     this.http
       .post("backend/insert.php", this.user)
       .subscribe((response: any) => {

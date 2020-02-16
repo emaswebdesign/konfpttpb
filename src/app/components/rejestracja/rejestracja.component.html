@@ -133,7 +133,7 @@
           </div>
 
           <div class="row">
-            <div class="form-check ml-3 col-12">
+            <div class="form-check ml-3 mt-3 col-12">
               <input
                 class="form-check-input"
                 type="checkbox"
@@ -156,7 +156,11 @@
           <div class="row">
             <div class="col-12">
               <hr>
-              <p class="h6 mb-4">Warsztaty przed konferencyjne (Pre-congress workshops) </p>
+              <p class="h6 mb-1">Warsztaty przedkonferencyjne (Pre-congress workshops) </p>
+              <p class="mb-4 fs-12">część warsztatów pokrywa się czasowo, prosimy więc o zapoznanie się z <a
+                  routerLink="/warsztaty"
+                  target="_blank"
+                >planem warsztatów</a>.</p>
 
               <div
                 class="ml-3"
@@ -289,6 +293,78 @@
                   for="{{workshop6Details.value}}"
                 ><b>{{workshop6Details.author}}</b>: {{workshop6Details.title}} -
                   {{ activeMember ? workshop6Details.membersPrice : workshop6Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop7Details.value}}"
+                  [(ngModel)]="workshop7"
+                  name="{{workshop7Details.value}}"
+                  value="{{workshop7Details.title}}"
+                  (change)="onWorkshopChange(workshop7Details)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop7Details.value}}"
+                ><b>{{workshop7Details.author}}</b>: {{workshop7Details.title}} -
+                  {{ activeMember ? workshop7Details.membersPrice : workshop7Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop8Details.value}}"
+                  [(ngModel)]="workshop8"
+                  name="{{workshop8Details.value}}"
+                  value="{{workshop8Details.title}}"
+                  (change)="onWorkshopChange(workshop8Details)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop8Details.value}}"
+                ><b>{{workshop8Details.author}}</b>: {{workshop8Details.title}} -
+                  {{ activeMember ? workshop8Details.membersPrice : workshop8Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop9Details.value}}"
+                  [(ngModel)]="workshop9"
+                  name="{{workshop9Details.value}}"
+                  value="{{workshop9Details.title}}"
+                  (change)="onWorkshopChange(workshop9Details)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop9Details.value}}"
+                ><b>{{workshop9Details.author}}</b>: {{workshop9Details.title}} -
+                  {{ activeMember ? workshop9Details.membersPrice : workshop9Details.regularPrice }} zł
+                </label>
+              </div>
+
+              <div class="ml-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{workshop10Details.value}}"
+                  [(ngModel)]="workshop10"
+                  name="{{workshop10Details.value}}"
+                  value="{{workshop10Details.title}}"
+                  (change)="onWorkshopChange(workshop10Details)"
+                >
+                <label
+                  class="fs-15"
+                  for="{{workshop10Details.value}}"
+                ><b>{{workshop10Details.author}}</b>: {{workshop10Details.title}} -
+                  {{ activeMember ? workshop10Details.membersPrice : workshop10Details.regularPrice }} zł
                 </label>
               </div>
             </div>

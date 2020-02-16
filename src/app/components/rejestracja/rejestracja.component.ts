@@ -25,6 +25,14 @@ export class User {
   workshops: string[];
 }
 
+interface IWorkshop {
+    regularPrice: number;
+    membersPrice: number;
+    title: string;
+    author?: string;
+    value?: string;
+}
+
 @Component({
   selector: "app-rejestracja",
   templateUrl: "./rejestracja.component.html",
@@ -36,6 +44,7 @@ export class RejestracjaComponent implements OnInit {
   secondStep: boolean = false;
   formSubmited: boolean = false;
   conferencePrice: number = 900;
+  totalPrice = 900;
   workshop1: boolean;
   workshop1Price: number;
   workshop2: boolean;
@@ -48,11 +57,12 @@ export class RejestracjaComponent implements OnInit {
   workshop5Price: number;
   workshop6: boolean;
   workshop6Price: number;
-  selectedWorkshops: string[] = [];
-  selectedPreconference: string;
-  preconferencePrice: number = 0;
+  selectedWorkshops: IWorkshop[] = [];
+  selectedPreconferenceWorkshop: IWorkshop;
 
-  preconference: object[] = [
+
+
+  preconference: IWorkshop[] = [
     { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" },
     {
       regularPrice: 400,
@@ -74,7 +84,7 @@ export class RejestracjaComponent implements OnInit {
     }
   ];
 
-  workshop1Details: object = {
+  workshop1Details: IWorkshop = {
     value: "workshop1",
     author: "Eduardo Keegan",
     title: "Just do it! Dealing with procrastination",
@@ -82,7 +92,7 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 150
   };
 
-  workshop2Details: object = {
+  workshop2Details: IWorkshop = {
     value: "workshop2",
     author: "Frank Datillo",
     title: "CBT with families",
@@ -90,7 +100,7 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 150
   };
 
-  workshop3Details: object = {
+  workshop3Details: IWorkshop = {
     value: "workshop3",
     author: "Małgorzata Bielak",
     title: "Praca z trybami w narcystycznym zaburzeniu osobowości",
@@ -98,7 +108,7 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 30
   };
 
-  workshop4Details: object = {
+  workshop4Details: IWorkshop = {
     value: "workshop4",
     author: "Hubert Czupała",
     title:
@@ -107,7 +117,7 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 30
   };
 
-  workshop5Details: object = {
+  workshop5Details: IWorkshop = {
     value: "workshop5",
     author: "Mark Reinicke",
     title: "CBT with angry and oppositional youth",
@@ -115,7 +125,7 @@ export class RejestracjaComponent implements OnInit {
     membersPrice: 150
   };
 
-  workshop6Details: object = {
+  workshop6Details: IWorkshop = {
     value: "workshop6",
     author: "Mark Agnieszka Popiel, Ewa Pragłowska",
     title:
@@ -164,127 +174,67 @@ export class RejestracjaComponent implements OnInit {
   //     });
   // }
 
-  getBasePrice() {
-    this.activeMember
-      ? (this.conferencePrice = 750)
-      : (this.conferencePrice = 900);
+  updatePrice(): void {
+    this.conferencePrice = this.getBasePrice() + this.getWorkshopsPrice();
+    this.totalPrice = this.getPrice();
   }
 
-  getPreconferencePrice($event: any) {
-    let element = event.currentTarget as HTMLInputElement;
-
-    this.preconferencePrice = parseFloat(element.value);
-    this.selectedPreconference = element.id;
+  getBasePrice(): number {
+      if (this.activeMember) {
+          return 750;
+      } else {
+          return 900;
+      }
   }
 
-  getWorkshop1Price($event) {
-    let workshopSelected = event.currentTarget as HTMLInputElement;
-    let workshopTitle = workshopSelected.value;
+  getPreconferenceWorkshopPrice(): number {
+      if (this.selectedPreconferenceWorkshop) {
+        if (this.activeMember) {
+            return this.selectedPreconferenceWorkshop.membersPrice;
+        } else {
+            return this.selectedPreconferenceWorkshop.regularPrice;
+        }
+      } else {
+          return 0;
+      }
+  }
 
-    if (this.workshop1) {
-      this.activeMember
-        ? (this.workshop1Price = 150)
-        : (this.workshop1Price = 250);
+  getWorkshopsPrice(): number {
+    const prices = this.selectedWorkshops.map(workshop => {
+        if (this.activeMember) {
+            return workshop.membersPrice;
+        } else {
+            return workshop.regularPrice;
+        }
+    });
+    return prices.reduce((acc, currentValue) => {
+        return acc + currentValue;
+    }, 0);
+  }
 
-      this.conferencePrice = this.conferencePrice + this.workshop1Price;
-      this.selectedWorkshops.push(workshopTitle);
+  getPrice(): number {
+      return this.getBasePrice() + this.getPreconferenceWorkshopPrice() + this.getWorkshopsPrice()
+  }
+
+  onPreconferenceWorkshopChange(workshop: IWorkshop): void {
+    this.selectedPreconferenceWorkshop = workshop;
+    this.updatePrice();
+  }
+
+  onWorkshopChange(workshop: IWorkshop): void {
+    const index = this.selectedWorkshops.indexOf(workshop);
+    if (index > -1) {
+        this.selectedWorkshops.splice(index, 1);
     } else {
-      this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf(workshopTitle),
-        1
-      );
-
-      this.conferencePrice = this.conferencePrice - this.workshop1Price;
-      this.workshop1Price = undefined;
+        this.selectedWorkshops.push(workshop);
     }
-  }
-
-  getWorkshop2Price($event) {
-    let workshopSelected = event.currentTarget as HTMLInputElement;
-    let workshopTitle = workshopSelected.value;
-
-    if (this.workshop2) {
-      this.activeMember
-        ? (this.workshop2Price = 150)
-        : (this.workshop2Price = 250);
-
-      this.conferencePrice = this.conferencePrice + this.workshop2Price;
-
-      this.selectedWorkshops.push(workshopTitle);
-    } else {
-      this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf(workshopTitle),
-        1
-      );
-      this.conferencePrice = this.conferencePrice - this.workshop2Price;
-      this.workshop2Price = undefined;
-    }
-  }
-
-  getWorkshop3Price($event) {
-    let workshopSelected = event.currentTarget as HTMLInputElement;
-    let workshopTitle = workshopSelected.value;
-
-    if (this.workshop3) {
-      this.activeMember
-        ? (this.workshop3Price = 30)
-        : (this.workshop3Price = 60);
-      this.conferencePrice = this.conferencePrice + this.workshop3Price;
-      this.selectedWorkshops.push(workshopTitle);
-    } else {
-      this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf(workshopTitle),
-        1
-      );
-      this.conferencePrice = this.conferencePrice - this.workshop3Price;
-      this.workshop3Price = undefined;
-    }
-  }
-
-  getWorkshop4Price($event) {
-    let workshopSelected = event.currentTarget as HTMLInputElement;
-    let workshopTitle = workshopSelected.value;
-
-    if (this.workshop4) {
-      this.activeMember
-        ? (this.workshop4Price = 30)
-        : (this.workshop4Price = 60);
-      this.conferencePrice = this.conferencePrice + this.workshop4Price;
-      this.selectedWorkshops.push(workshopTitle);
-    } else {
-      this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf(workshopTitle),
-        1
-      );
-      this.conferencePrice = this.conferencePrice - this.workshop4Price;
-      this.workshop4Price = undefined;
-    }
-  }
-
-  getWorkshop5Price($event) {
-    let workshopSelected = event.currentTarget as HTMLInputElement;
-    let workshopTitle = workshopSelected.value;
-
-    if (this.workshop5) {
-      this.activeMember
-        ? (this.workshop5Price = 150)
-        : (this.workshop5Price = 250);
-      this.conferencePrice = this.conferencePrice + this.workshop5Price;
-      this.selectedWorkshops.push(workshopTitle);
-    } else {
-      this.selectedWorkshops.splice(
-        this.selectedWorkshops.indexOf(workshopTitle),
-        1
-      );
-      this.conferencePrice = this.conferencePrice - this.workshop5Price;
-      this.workshop5Price = undefined;
-    }
+    this.updatePrice();
   }
 
   processForm() {
-    this.user.totalPrice = this.conferencePrice + this.preconferencePrice;
-    this.user.workshops = this.selectedWorkshops;
-    this.user.preconference = this.selectedPreconference;
+    this.user.totalPrice = this.getPrice();
+    this.user.workshops = this.selectedWorkshops.map(workshop => workshop.title).filter(i => !!i);
+    this.user.preconference = this.selectedPreconferenceWorkshop && this.selectedPreconferenceWorkshop.title;
     //console.log("mas", this.user);
     this.http
       .post("backend/insert.php", this.user)

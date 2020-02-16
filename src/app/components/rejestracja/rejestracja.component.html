@@ -140,7 +140,7 @@
                 id="activeMember"
                 [(ngModel)]="activeMember"
                 name="activeMember"
-                (change)="getBasePrice()"
+                (change)="updatePrice()"
               >
 
               <label
@@ -168,7 +168,7 @@
                   id="{{item.title}}"
                   name="preconference"
                   value="{{ activeMember ? item.membersPrice : item.regularPrice }}"
-                  (change)="getPreconferencePrice($event)"
+                  (change)="onPreconferenceWorkshopChange(item)"
                 >
                 <label
                   class="fs-15"
@@ -192,7 +192,7 @@
                   [(ngModel)]="workshop1"
                   name="{{workshop1Details.value}}"
                   value="{{workshop1Details.title}}"
-                  (change)="getWorkshop1Price($event)"
+                  (change)="onWorkshopChange(workshop1Details)"
                 >
                 <label
                   class="fs-15"
@@ -210,7 +210,7 @@
                   [(ngModel)]="workshop2"
                   name="{{workshop2Details.value}}"
                   value="{{workshop2Details.title}}"
-                  (change)="getWorkshop2Price($event)"
+                  (change)="onWorkshopChange(workshop2Details)"
                 >
                 <label
                   class="fs-15"
@@ -228,7 +228,7 @@
                   [(ngModel)]="workshop3"
                   name="{{workshop3Details.value}}"
                   value="{{workshop3Details.title}}"
-                  (change)="getWorkshop3Price($event)"
+                  (change)="onWorkshopChange(workshop3Details)"
                 >
                 <label
                   class="fs-15"
@@ -246,7 +246,7 @@
                   [(ngModel)]="workshop4"
                   name="{{workshop4Details.value}}"
                   value="{{workshop4Details.title}}"
-                  (change)="getWorkshop4Price($event)"
+                  (change)="onWorkshopChange(workshop4Details)"
                 >
                 <label
                   class="fs-15"
@@ -264,7 +264,7 @@
                   [(ngModel)]="workshop5"
                   name="{{workshop5Details.value}}"
                   value="{{workshop5Details.title}}"
-                  (change)="getWorkshop5Price($event)"
+                  (change)="onWorkshopChange(workshop5Details)"
                 >
                 <label
                   class="fs-15"
@@ -282,7 +282,7 @@
                   [(ngModel)]="workshop6"
                   name="{{workshop6Details.value}}"
                   value="{{workshop6Details.title}}"
-                  (change)="getWorkshop6Price($event)"
+                  (change)="onWorkshopChange(workshop6Details)"
                 >
                 <label
                   class="fs-15"
@@ -451,7 +451,7 @@
           <div class="row">
             <div class="col-12 mt-3">
               <hr>
-              <h5>Kwota do zapłaty (Registration fee): {{conferencePrice + preconferencePrice}}
+              <h5>Kwota do zapłaty (Registration fee): {{totalPrice}}
                 zł
               </h5>
             </div>

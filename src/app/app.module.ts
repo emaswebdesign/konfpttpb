@@ -69,6 +69,9 @@ import { CennikComponent } from "./components/cennik/cennik.component";
 import { WieslawJerzyCubalaComponent } from "./components/wieslaw-jerzy-cubala/wieslaw-jerzy-cubala.component";
 import { EnWieslawJerzyCubalaComponent } from "./components/en-wieslaw-jerzy-cubala/en-wieslaw-jerzy-cubala.component";
 import { WarsztatyComponent } from "./components/warsztaty/warsztaty.component";
+import { WorkshopEduardoKeganComponent } from './components/workshop-eduardo-kegan/workshop-eduardo-kegan.component';
+import { WorkshopRobertLeahyComponent } from './components/workshop-robert-leahy/workshop-robert-leahy.component';
+import { WorkshopMalgorzataBielakComponent } from './components/workshop-malgorzata-bielak/workshop-malgorzata-bielak.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -194,7 +197,10 @@ const appRoutes: Routes = [
     CennikComponent,
     WieslawJerzyCubalaComponent,
     EnWieslawJerzyCubalaComponent,
-    WarsztatyComponent
+    WarsztatyComponent,
+    WorkshopEduardoKeganComponent,
+    WorkshopRobertLeahyComponent,
+    WorkshopMalgorzataBielakComponent
   ],
   imports: [
     BrowserModule,

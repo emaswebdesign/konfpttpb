@@ -66,8 +66,8 @@ class Registration {
      */
     protected function saveRegistration() {
         $result = $this->mysqlConn->query(sprintf(
-            "INSERT INTO `%s` (`time`,`email`, `name`, `surname`, `academicTitle`, `institution`, `doctorLicenseNumber`, `preconference`, `fv`, `companyName`, `companyAddress`, `companyNrDomu`, `companyNrLokalu`, `companyCity`, `companyZip`, `companyPoczta`, `companyNip`, `totalPrice`, `contributionPayed`, `Source`) 
-             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+            "INSERT INTO `%s` (`time`,`email`, `name`, `surname`, `academicTitle`, `institution`, `doctorLicenseNumber`, `preconference`, `workshops`, `fv`, `companyName`, `companyAddress`, `companyNrDomu`, `companyNrLokalu`, `companyCity`, `companyZip`, `companyPoczta`, `companyNip`, `totalPrice`, `contributionPayed`, `Source`) 
+             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
             $this->sql_table,
             date('Y-m-d H:i:s'),
             $this->data['email'],
@@ -77,6 +77,7 @@ class Registration {
             $this->data['institution'],
             $this->data['doctorLicenseNumber'],
             $this->data['preconference'],
+            $this->data['workshopString'],
             $this->data['fv'],
             $this->data['companyName'],
             $this->data['companyAddress'],

@@ -23,6 +23,7 @@ export class User {
   totalPrice: any;
   contributionPayed: any;
   workshops: string[];
+  workshopString: string;
 }
 
 interface IWorkshop {
@@ -80,7 +81,11 @@ export class RejestracjaComponent implements OnInit {
       title:
         "Conceptualising and treating high- risk and complexity: What does DBT have to offer"
     },
-    { regularPrice: 0, membersPrice: 0, title: "Nie chcę brać udziału" }
+    {
+      regularPrice: 0,
+      membersPrice: 0,
+      title: "Nie chcę brać udziału"
+    }
   ];
 
   workshop1Details: IWorkshop = {
@@ -192,7 +197,8 @@ export class RejestracjaComponent implements OnInit {
       companyCity: "",
       totalPrice: "",
       contributionPayed: "",
-      workshops: []
+      workshops: [],
+      workshopString: ""
     };
   }
 
@@ -274,10 +280,12 @@ export class RejestracjaComponent implements OnInit {
     this.user.workshops = this.selectedWorkshops
       .map(workshop => workshop.title)
       .filter(i => !!i);
+    this.user.workshopString = this.user.workshops.join(", ");
     this.user.preconference =
       this.selectedPreconferenceWorkshop &&
       this.selectedPreconferenceWorkshop.title;
-    console.log("mas", this.user);
+    this.user.contributionPayed = this.activeMember;
+    //console.log("mas", this.user);
     this.http
       .post("backend/insert.php", this.user)
       .subscribe((response: any) => {

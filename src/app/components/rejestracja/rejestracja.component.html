@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="row mt-3">
+    <div class="col">
+      <app-cennik-tabela></app-cennik-tabela>
+      <p class="mt-2">* cena dotyczy wybranych warsztatów</p>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col">
       <hr>
@@ -148,7 +155,7 @@
                 for="activeMember"
               >
                 Jestem członkiem PTTPB (mam opłacone wszystkie składki z okresu bycia członkiem PTTPB do 2020 r.)
-                i/lub jestem aktualnie pracownikiem/studentem Instytutu Psychologii UJ
+                i/lub jestem aktualnie pracownikiem/studentem Instytutu Psychologii (I am a member of EABCT)
               </label>
             </div>
           </div>
@@ -158,19 +165,13 @@
               <hr>
               <p class="mt-4 fs-15"><b>Opłata konferencyjna</b> - 750 zł (członkowie PTTPB, pracownicy, studenci IP UJ,
                 członkowie
-                EABCT), 950 zł-
+                EABCT), 900 zł-
                 opłata standardowa dla pozostałych uczestników - <b>jest automatycznie wliczana</b>. (Rejestracja na
                 warsztaty
                 Przedkonferencyjne i Konferencyjne możliwa jest wyłącznie dla osób, które rejestrują się na konferencję
                 i wnoszą opłatę konferencyjną.)</p>
 
-              <p class="h6 mb-1 mt-5">Warsztaty przedkonferencyjne (Pre-congress workshops) </p>
-
-              <p class="mb-4 fs-12">część warsztatów pokrywa się czasowo, prosimy więc o zapoznanie się z <a
-                  routerLink="/warsztaty"
-                  target="_blank"
-                >planem warsztatów</a>.</p>
-
+              <p class="h6 mb-4 mt-5">Warsztaty przedkonferencyjne (Pre-congress workshops) </p>
               <div
                 class="ml-3"
                 *ngFor="let item of preconference"
@@ -197,7 +198,12 @@
           <div class="
                     row">
             <div class="form-group col-12 mt-4">
-              <p class="h6 mb-4">Warsztaty konferencyjne (In-congress workshops)</p>
+              <p class="h6 mb-1">Warsztaty konferencyjne (In-congress workshops)</p>
+              <p class="font-weight-bold text-danger mb-4">Część
+                warsztatów pokrywa się czasowo, prosimy więc o zapoznanie się z <a
+                  routerLink="/warsztaty"
+                  target="_blank"
+                >planem warsztatów</a>.</p>
               <div class="ml-3">
                 <input
                   class="form-check-input"

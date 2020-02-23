@@ -90,6 +90,34 @@ import { WorkshopBrynskaSzalasComponent } from './components/workshop-brynska-sz
 import { JoahimKowalskiComponent } from './components/joahim-kowalski/joahim-kowalski.component';
 import { WorkshopMalinowskaWroczynskaComponent } from './components/workshop-malinowska-wroczynska/workshop-malinowska-wroczynska.component';
 import { LogosComponent } from './components/logos/logos.component';
+import { AlicjaBaranekComponent } from './components/alicja-baranek/alicja-baranek.component';
+import { WorkshopAlicjaBaranekComponent } from './components/workshop-alicja-baranek/workshop-alicja-baranek.component';
+import { KatarzynaSikoraComponent } from './components/katarzyna-sikora/katarzyna-sikora.component';
+import { WorkshopKatarzynaSikoraComponent } from './components/workshop-katarzyna-sikora/workshop-katarzyna-sikora.component';
+import { PiotrSikoraComponent } from './components/piotr-sikora/piotr-sikora.component';
+import { NataliaLiszewskaComponent } from './components/natalia-liszewska/natalia-liszewska.component';
+import { WorkshopNataliaLiszewskaComponent } from './components/workshop-natalia-liszewska/workshop-natalia-liszewska.component';
+import { WorkshopNinaSzalasComponent } from './components/workshop-nina-szalas/workshop-nina-szalas.component';
+import { TomaszSrebnickiComponent } from './components/tomasz-srebnicki/tomasz-srebnicki.component';
+import { BartoszKleszczComponent } from './components/bartosz-kleszcz/bartosz-kleszcz.component';
+import { WorkshopBartoszKleszczComponent } from './components/workshop-bartosz-kleszcz/workshop-bartosz-kleszcz.component';
+import { MagdalenaMurackaComponent } from './components/magdalena-muracka/magdalena-muracka.component';
+import { WorkshopMagdalenaMurackaComponent } from './components/workshop-magdalena-muracka/workshop-magdalena-muracka.component';
+import { MagdalenaSkuzaComponent } from './components/magdalena-skuza/magdalena-skuza.component';
+import { OlgaOlszewskaComponent } from './components/olga-olszewska/olga-olszewska.component';
+import { WorkshopOlgaOlszewskaComponent } from './components/workshop-olga-olszewska/workshop-olga-olszewska.component';
+import { JoannaSalbertComponent } from './components/joanna-salbert/joanna-salbert.component';
+import { WorkshopJoannaSalbertComponent } from './components/workshop-joanna-salbert/workshop-joanna-salbert.component';
+import { WorkshopMalgorzataBerezaComponent } from './components/workshop-malgorzata-bereza/workshop-malgorzata-bereza.component';
+import { MalgorzataBerezaComponent } from './components/malgorzata-bereza/malgorzata-bereza.component';
+import { WorkshopJoachimKowalskiComponent } from './components/workshop-joachim-kowalski/workshop-joachim-kowalski.component';
+import { DanielPankowskiComponent } from './components/daniel-pankowski/daniel-pankowski.component';
+import { KingaWytrychiewiczComponent } from './components/kinga-wytrychiewicz/kinga-wytrychiewicz.component';
+import { AleksandraAugustynComponent } from './components/aleksandra-augustyn/aleksandra-augustyn.component';
+import { WorkshopAleksandraAugustynComponent } from './components/workshop-aleksandra-augustyn/workshop-aleksandra-augustyn.component';
+import { JoannaSzmydComponent } from './components/joanna-szmyd/joanna-szmyd.component';
+import { CennikTabelaComponent } from './components/cennik-tabela/cennik-tabela.component';
+import { EnCennikTabelaComponent } from './components/en-cennik-tabela/en-cennik-tabela.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -238,7 +266,35 @@ const appRoutes: Routes = [
     WorkshopBrynskaSzalasComponent,
     JoahimKowalskiComponent,
     WorkshopMalinowskaWroczynskaComponent,
-    LogosComponent
+    LogosComponent,
+    AlicjaBaranekComponent,
+    WorkshopAlicjaBaranekComponent,
+    KatarzynaSikoraComponent,
+    WorkshopKatarzynaSikoraComponent,
+    PiotrSikoraComponent,
+    NataliaLiszewskaComponent,
+    WorkshopNataliaLiszewskaComponent,
+    WorkshopNinaSzalasComponent,
+    TomaszSrebnickiComponent,
+    BartoszKleszczComponent,
+    WorkshopBartoszKleszczComponent,
+    MagdalenaMurackaComponent,
+    WorkshopMagdalenaMurackaComponent,
+    MagdalenaSkuzaComponent,
+    OlgaOlszewskaComponent,
+    WorkshopOlgaOlszewskaComponent,
+    JoannaSalbertComponent,
+    WorkshopJoannaSalbertComponent,
+    WorkshopMalgorzataBerezaComponent,
+    MalgorzataBerezaComponent,
+    WorkshopJoachimKowalskiComponent,
+    DanielPankowskiComponent,
+    KingaWytrychiewiczComponent,
+    AleksandraAugustynComponent,
+    WorkshopAleksandraAugustynComponent,
+    JoannaSzmydComponent,
+    CennikTabelaComponent,
+    EnCennikTabelaComponent
   ],
   imports: [
     BrowserModule,

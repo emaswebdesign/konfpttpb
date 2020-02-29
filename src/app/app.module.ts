@@ -124,6 +124,9 @@ import { PrzemyslawBabelComponent } from "./components/przemyslaw-babel/przemysl
 import { EnPrzemyslawBabelComponent } from "./components/en-przemyslaw-babel/en-przemyslaw-babel.component";
 import { EnAnitaBrynskaComponent } from "./components/en-anita-brynska/en-anita-brynska.component";
 import { EnYonaTeichmanComponent } from "./components/en-yona-teichman/en-yona-teichman.component";
+import { HarmonogramComponent } from "./components/harmonogram/harmonogram.component";
+import { EnBogdanZawadzkiComponent } from './components/en-bogdan-zawadzki/en-bogdan-zawadzki.component';
+import { YonaTeichmanComponent } from './components/yona-teichman/yona-teichman.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -171,9 +174,12 @@ const appRoutes: Routes = [
   { path: "przemyslaw-babel", component: PrzemyslawBabelComponent },
   { path: "en-przemyslaw-babel", component: EnPrzemyslawBabelComponent },
   { path: "bogdan-zawadzki", component: BogdanZawadzkiComponent },
+  { path: "en-bogdan-zawadzki", component: EnBogdanZawadzkiComponent },
   { path: "anita-brynska", component: AnitaBrynskaComponent },
   { path: "en-anita-brynska", component: EnAnitaBrynskaComponent },
+  { path: "yona-teichman", component: YonaTeichmanComponent },
   { path: "en-yona-teichman", component: EnYonaTeichmanComponent },
+  { path: "harmonogram", component: HarmonogramComponent },
   {
     path: "instytut-psychologii-uj",
     component: InstytutPsychologiiUjComponent
@@ -312,7 +318,10 @@ const appRoutes: Routes = [
     PrzemyslawBabelComponent,
     EnPrzemyslawBabelComponent,
     EnAnitaBrynskaComponent,
-    EnYonaTeichmanComponent
+    EnYonaTeichmanComponent,
+    HarmonogramComponent,
+    EnBogdanZawadzkiComponent,
+    YonaTeichmanComponent
   ],
   imports: [
     BrowserModule,

@@ -127,6 +127,13 @@ import { EnYonaTeichmanComponent } from "./components/en-yona-teichman/en-yona-t
 import { HarmonogramComponent } from "./components/harmonogram/harmonogram.component";
 import { EnBogdanZawadzkiComponent } from './components/en-bogdan-zawadzki/en-bogdan-zawadzki.component';
 import { YonaTeichmanComponent } from './components/yona-teichman/yona-teichman.component';
+import { EnWarsztatyComponent } from './components/en-warsztaty/en-warsztaty.component';
+import { EnWorkshopReobertLeahyComponent } from './components/en-workshop-reobert-leahy/en-workshop-reobert-leahy.component';
+import { EnWorkshopFrankDatilloComponent } from './components/en-workshop-frank-datillo/en-workshop-frank-datillo.component';
+import { EnWorkshopMichaelaSwalesComponent } from './components/en-workshop-michaela-swales/en-workshop-michaela-swales.component';
+import { EnWorkshopEduardoKeganComponent } from './components/en-workshop-eduardo-kegan/en-workshop-eduardo-kegan.component';
+import { EnWorkshopFrankDatilloSecondComponent } from './components/en-workshop-frank-datillo-second/en-workshop-frank-datillo-second.component';
+import { EnWorkshopCoryNewmanComponent } from './components/en-workshop-cory-newman/en-workshop-cory-newman.component';
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -196,6 +203,7 @@ const appRoutes: Routes = [
     component: EnKonferencjaStudenckaComponent
   },
   { path: "warsztaty", component: WarsztatyComponent },
+  { path: "en-warsztaty", component: EnWarsztatyComponent },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -321,7 +329,14 @@ const appRoutes: Routes = [
     EnYonaTeichmanComponent,
     HarmonogramComponent,
     EnBogdanZawadzkiComponent,
-    YonaTeichmanComponent
+    YonaTeichmanComponent,
+    EnWarsztatyComponent,
+    EnWorkshopReobertLeahyComponent,
+    EnWorkshopFrankDatilloComponent,
+    EnWorkshopMichaelaSwalesComponent,
+    EnWorkshopEduardoKeganComponent,
+    EnWorkshopFrankDatilloSecondComponent,
+    EnWorkshopCoryNewmanComponent
   ],
   imports: [
     BrowserModule,

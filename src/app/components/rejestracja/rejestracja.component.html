@@ -1,479 +1,523 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col">
-      <app-cennik-tabela></app-cennik-tabela>
-      <p class="mt-2">* cena dotyczy wybranych warsztatów</p>
+    <div class="row mt-3">
+        <div class="col">
+            <app-cennik-tabela></app-cennik-tabela>
+        </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col">
-      <hr>
+    <div class="row mt-3">
+        <div class="col">
+            <app-en-cennik-tabela></app-en-cennik-tabela>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <!-- Formularz zgłoszeniowy-->
-    <div class="col-lg-9 mb-4">
-      <div *ngIf="!formSubmited">
-        <h4>Formularz rejestracji (Registration form)</h4>
 
-        <form (submit)="processForm()">
-          <div class="row mt-4">
-            <div class="form-group col-lg-6">
-              <label for="academicTitle">Tytuł naukowy (Academic title/Degree)</label>
-              <input
-                type="text"
-                name="academicTitle"
-                class="form-control"
-                [(ngModel)]="user.academicTitle"
-              >
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="form-group col-lg-6 col-xs-12 mt-3">
-              <label for="name">Imię (First name)
-                <span class="invalid">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                [(ngModel)]="user.name"
-                (blur)="user.name=user.name.toUpperCase();"
-                #userName="ngModel"
-                required
-                minlength="3"
-              >
-              <div
-                class="fs-12 invalid"
-                *ngIf="userName.touched && !userName.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="userName.touched && userName.valid"
-              >Wygląda dobrze</div>
-            </div>
-            <div class="form-group col-lg-6 col-xs-12 mt-3">
-              <label for="surname">Nazwisko (Last name)
-                <span class="invalid">*</span>
-              </label>
-              <input
-                type="text"
-                name="surname"
-                class="form-control"
-                [(ngModel)]="user.surname"
-                (blur)="user.surname=user.surname.toUpperCase();"
-                #userSurname="ngModel"
-                required
-                minlength="3"
-              >
-              <div
-                class="fs-12 invalid"
-                *ngIf="userSurname.touched && !userSurname.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="userSurname.touched && userSurname.valid"
-              >Wygląda dobrze</div>
-            </div>
-          </div>
+    <div class="row m-t">
+        <!-- Formularz zgłoszeniowy-->
+        <div class="col-12 mb-4">
+            <div *ngIf="!formSubmited">
+                <h4>Formularz rejestracji (Registration form)</h4>
 
-          <div class="row">
-            <div class="form-group col-lg-6">
-              <label for="institution">Instytucja / Afiliacja (Institution/Affiliation)</label>
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="user.institution"
-                name="institution"
-              >
-            </div>
-          </div>
+                <form (submit)="processForm()">
+                    <div class="row mt-4">
+                        <div class="form-group col-lg-6">
+                            <label for="academicTitle">Tytuł naukowy (Academic title/Degree)</label>
+                            <input type="text"
+                                   name="academicTitle"
+                                   class="form-control"
+                                   [(ngModel)]="user.academicTitle">
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="form-group col-lg-6">
-              <label for="email">Email
-                <span class="invalid">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                class="form-control"
-                [(ngModel)]="user.email"
-                #userEmail="ngModel"
-                required
-                email
-              >
-              <div
-                class="fs-12 invalid"
-                *ngIf="userEmail.touched && !userEmail.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="userEmail.touched && userEmail.valid"
-              >Wygląda dobrze</div>
-            </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6 col-xs-12 mt-3">
+                            <label for="name">Imię (First name)
+                                <span class="invalid">*</span>
+                            </label>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   [(ngModel)]="user.name"
+                                   (blur)="user.name=user.name.toUpperCase();"
+                                   #userName="ngModel"
+                                   required
+                                   minlength="3">
+                            <div class="fs-12 invalid"
+                                 *ngIf="userName.touched && !userName.valid">Pole wymagane</div>
+                            <div class="fs-12 valid"
+                                 *ngIf="userName.touched && userName.valid">Wygląda dobrze</div>
+                        </div>
+                        <div class="form-group col-lg-6 col-xs-12 mt-3">
+                            <label for="surname">Nazwisko (Last name)
+                                <span class="invalid">*</span>
+                            </label>
+                            <input type="text"
+                                   name="surname"
+                                   class="form-control"
+                                   [(ngModel)]="user.surname"
+                                   (blur)="user.surname=user.surname.toUpperCase();"
+                                   #userSurname="ngModel"
+                                   required
+                                   minlength="3">
+                            <div class="fs-12 invalid"
+                                 *ngIf="userSurname.touched && !userSurname.valid">Pole wymagane</div>
+                            <div class="fs-12 valid"
+                                 *ngIf="userSurname.touched && userSurname.valid">Wygląda dobrze</div>
+                        </div>
+                    </div>
 
-            <div class="form-group col-lg-6">
-              <label for="phoneNumber">Telefon (Telephone)
-                <span class="invalid">*</span>
-              </label>
-              <input
-                type="text"
-                name="phoneNumber"
-                class="form-control"
-                [(ngModel)]="user.phoneNumber"
-                #userPhoneNumber="ngModel"
-                required
-                phone
-              >
-              <div
-                class="fs-12 invalid"
-                *ngIf="userPhoneNumber.touched && !userPhoneNumber.valid"
-              >Pole wymagane</div>
-              <div
-                class="fs-12 valid"
-                *ngIf="userPhoneNumber.touched && userPhoneNumber.valid"
-              >Wygląda dobrze</div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="institution">Instytucja / Afiliacja (Institution/Affiliation)</label>
+                            <input type="text"
+                                   class="form-control"
+                                   [(ngModel)]="user.institution"
+                                   name="institution">
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="form-check ml-3 mt-3 col-12">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="activeMember"
-                [(ngModel)]="activeMember"
-                name="activeMember"
-                (change)="updatePrice()"
-              >
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="email">Email
+                                <span class="invalid">*</span>
+                            </label>
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   [(ngModel)]="user.email"
+                                   #userEmail="ngModel"
+                                   required
+                                   email>
+                            <div class="fs-12 invalid"
+                                 *ngIf="userEmail.touched && !userEmail.valid">Pole wymagane</div>
+                            <div class="fs-12 valid"
+                                 *ngIf="userEmail.touched && userEmail.valid">Wygląda dobrze</div>
+                        </div>
 
-              <label
-                class="fs-15"
-                for="activeMember"
-              >
-                Jestem członkiem PTTPB (mam opłacone wszystkie składki z okresu bycia członkiem PTTPB do 2020 r.)
-                i/lub jestem aktualnie pracownikiem/studentem Instytutu Psychologii Uniwersytetu Jagiellońskiego (I am a
-                member of EABCT)
-              </label>
-            </div>
-          </div>
+                        <div class="form-group col-lg-6">
+                            <label for="phoneNumber">Telefon (Telephone)
+                                <span class="invalid">*</span>
+                            </label>
+                            <input type="text"
+                                   name="phoneNumber"
+                                   class="form-control"
+                                   [(ngModel)]="user.phoneNumber"
+                                   #userPhoneNumber="ngModel"
+                                   required
+                                   phone>
+                            <div class="fs-12 invalid"
+                                 *ngIf="userPhoneNumber.touched && !userPhoneNumber.valid">Pole wymagane</div>
+                            <div class="fs-12 valid"
+                                 *ngIf="userPhoneNumber.touched && userPhoneNumber.valid">Wygląda dobrze</div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-12">
-              <hr>
-              <p class="mt-4 fs-15"><b>Opłata konferencyjna</b> - 750 zł (członkowie PTTPB, pracownicy i studenci IP UJ,
-                członkowie EABCT), 900 zł (opłata standardowa dla pozostałych uczestników) - <b>jest automatycznie
-                  wliczana.</b> (Rejestracja na warsztaty Przedkonferencyjne i Konferencyjne możliwa jest wyłącznie dla
-                osób,
-                które rejestrują się na konferencję i wnoszą opłatę konferencyjną).</p>
+                    <div class="row">
+                        <div class="form-check ml-3 mt-3 col-12">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="activeMember"
+                                   [(ngModel)]="activeMember"
+                                   name="activeMember"
+                                   (change)="updatePrice()">
 
-              <p><b>The conference fee</b> - PLN 750 (PTTPB members, employees and students of the Jagiellonian
-                University,
-                EABCT members), PLN 900 standard fee - <b>is automatically included</b>. (Registration for the
-                Pre-Conference
-                and Conference workshops is available to those who has registered for the conference and paid
-                conference fee).</p>
+                            <label class="fs-15"
+                                   for="activeMember">
+                                <b>Jestem członkiem PTTPB</b> (mam opłacone wszystkie składki z okresu bycia członkiem
+                                PTTPB do 2021 r.
+                                włącznie) / <b>I am a member of EABCT</b>
+                            </label>
+                        </div>
+                    </div>
 
-              <p class="h6 mb-4 mt-5">Warsztaty przedkonferencyjne (Pre-congress workshops) </p>
-              <div
-                class="ml-3"
-                *ngFor="let item of preconference"
-              >
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  id="{{item.title}}"
-                  name="preconference"
-                  value="{{ activeMember ? item.membersPrice : item.regularPrice }}"
-                  (change)="onPreconferenceWorkshopChange(item)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{item.title}}"
-                ><span *ngIf="item.author"><b>{{item.author}}</b>:</span> {{item.title}} -
-                  {{ activeMember ? item.membersPrice : item.regularPrice }} zł
-                </label>
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p class="mt-4 fs-15"><b>Opłata konferencyjna</b> - 600 zł (członkowie PTTPB, członkowie
+                                EABCT), 750 zł
+                                (opłata standardowa dla pozostałych uczestników) - <b>jest automatycznie
+                                    wliczana.</b> (Rejestracja na warsztaty Przedkonferencyjne i Konferencyjne możliwa
+                                jest wyłącznie dla
+                                osób, które rejestrują się na
+                                konferencję i wnoszą opłatę konferencyjną).</p>
 
-          <!-- Warsztaty -->
-          <div class="
+                            <p><b>The conference fee</b> - PLN 600 (PTTPB members, EABCT members), PLN 750 standard fee
+                                - <b>is
+                                    automatically included</b>. (Registration for the Pre-Conference and Conference
+                                workshops is available
+                                to those who has registered for the conference
+                                and paid conference fee).</p>
+
+                            <p class="h6 mb-4 mt-5">Warsztaty przedkonferencyjne (Pre-congress workshops) </p>
+
+                            <p class="m-t">Piątek godzina 17.00-21.30</p>
+                            <hr>
+
+                            <div class="ml-3"
+                                 *ngFor="let item of preconference">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       id="{{item.title}}"
+                                       name="preconference"
+                                       value="{{ activeMember ? item.membersPrice : item.regularPrice }}"
+                                       (change)="onPreconferenceWorkshopChange(item)">
+                                <label class="fs-15"
+                                       for="{{item.title}}"><span *ngIf="item.author"><b>{{item.author}}</b>:</span>
+                                    {{item.title}} -
+                                    {{ activeMember ? item.membersPrice : item.regularPrice }} zł
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warsztaty -->
+                    <div class="
                     row">
-            <div class="form-group col-12 mt-4">
-              <p class="h6 mb-1">Warsztaty konferencyjne (In-congress workshops)</p>
-              <p class="font-weight-bold text-danger mb-4">Część
-                warsztatów pokrywa się czasowo, prosimy więc o zapoznanie się z <a
-                  routerLink="/warsztaty"
-                  target="_blank"
-                >planem warsztatów</a>.</p>
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop1Details.value}}"
-                  [(ngModel)]="workshop1"
-                  name="{{workshop1Details.value}}"
-                  value="{{workshop1Details.title}}"
-                  (change)="onWorkshopChange(workshop1Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop1Details.value}}"
-                ><b>{{workshop1Details.author}}</b>: {{workshop1Details.title}} -
-                  {{ activeMember ? workshop1Details.membersPrice : workshop1Details.regularPrice }} zł
-                </label>
-              </div>
+                        <div class="form-group col-12 mt-4">
+                            <p class="h6 mb-1">Warsztaty konferencyjne (In-congress workshops)</p>
+                            <p class="font-weight-bold text-danger mb-4">Część warsztatów pokrywa się czasowo, prosimy
+                                więc o zwrócenie na to uwagi, aby uniknąć rejestracji na warsztaty
+                                odbywające się w tym samym czasie !</p>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop2Details.value}}"
-                  [(ngModel)]="workshop2"
-                  name="{{workshop2Details.value}}"
-                  value="{{workshop2Details.title}}"
-                  (change)="onWorkshopChange(workshop2Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop2Details.value}}"
-                ><b>{{workshop2Details.author}}</b>: {{workshop2Details.title}} -
-                  {{ activeMember ? workshop2Details.membersPrice : workshop2Details.regularPrice }} zł
-                </label>
-              </div>
+                            <p>Sobota godzina 9.00-12.00</p>
+                            <hr>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop5Details.value}}"
+                                       [(ngModel)]="workshop5"
+                                       name="{{workshop5Details.value}}"
+                                       value="{{workshop5Details.title}}"
+                                       (change)="onWorkshopChange(workshop5Details)">
+                                <label class="fs-15"
+                                       for="{{workshop5Details.value}}"><b>{{workshop5Details.author}}</b>:
+                                    {{workshop5Details.title}} -
+                                    {{ activeMember ? workshop5Details.membersPrice : workshop5Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop6Details.value}}"
+                                       [(ngModel)]="workshop6"
+                                       name="{{workshop6Details.value}}"
+                                       value="{{workshop6Details.title}}"
+                                       (change)="onWorkshopChange(workshop6Details)"
+                                       disabled>
+                                <label class="fs-15 strike"
+                                       for="{{workshop6Details.value}}"><b>{{workshop6Details.author}}</b>:
+                                    {{workshop6Details.title}} -
+                                    {{ activeMember ? workshop6Details.membersPrice : workshop6Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop2Details.value}}"
+                                       [(ngModel)]="workshop2"
+                                       name="{{workshop2Details.value}}"
+                                       value="{{workshop2Details.title}}"
+                                       (change)="onWorkshopChange(workshop2Details)">
+                                <label class="fs-15"
+                                       for="{{workshop2Details.value}}"><b>{{workshop2Details.author}}</b>:
+                                    {{workshop2Details.title}} -
+                                    {{ activeMember ? workshop2Details.membersPrice : workshop2Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop3Details.value}}"
-                  [(ngModel)]="workshop3"
-                  name="{{workshop3Details.value}}"
-                  value="{{workshop3Details.title}}"
-                  (change)="onWorkshopChange(workshop3Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop3Details.value}}"
-                ><b>{{workshop3Details.author}}</b>: {{workshop3Details.title}} -
-                  {{ activeMember ? workshop3Details.membersPrice : workshop3Details.regularPrice }} zł
-                </label>
-              </div>
+                            <p class="m-t">Sobota godzina 9.00-10.30</p>
+                            <hr>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop4Details.value}}"
-                  [(ngModel)]="workshop4"
-                  name="{{workshop4Details.value}}"
-                  value="{{workshop4Details.title}}"
-                  (change)="onWorkshopChange(workshop4Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop4Details.value}}"
-                ><b>{{workshop4Details.author}}</b>: {{workshop4Details.title}} -
-                  {{ activeMember ? workshop4Details.membersPrice : workshop4Details.regularPrice }} zł
-                </label>
-              </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop10Details.value}}"
+                                       [(ngModel)]="workshop10"
+                                       name="{{workshop10Details.value}}"
+                                       value="{{workshop10Details.title}}"
+                                       (change)="onWorkshopChange(workshop10Details)">
+                                <label class="fs-15"
+                                       for="{{workshop10Details.value}}"><b>{{workshop10Details.author}}</b>:
+                                    {{workshop10Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop5Details.value}}"
-                  [(ngModel)]="workshop5"
-                  name="{{workshop5Details.value}}"
-                  value="{{workshop5Details.title}}"
-                  (change)="onWorkshopChange(workshop5Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop5Details.value}}"
-                ><b>{{workshop5Details.author}}</b>: {{workshop5Details.title}} -
-                  {{ activeMember ? workshop5Details.membersPrice : workshop5Details.regularPrice }} zł
-                </label>
-              </div>
+                            <p class="m-t">Sobota godzina 10.30-12.00</p>
+                            <hr>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop6Details.value}}"
-                  [(ngModel)]="workshop6"
-                  name="{{workshop6Details.value}}"
-                  value="{{workshop6Details.title}}"
-                  (change)="onWorkshopChange(workshop6Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop6Details.value}}"
-                ><b>{{workshop6Details.author}}</b>: {{workshop6Details.title}} -
-                  {{ activeMember ? workshop6Details.membersPrice : workshop6Details.regularPrice }} zł
-                </label>
-              </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop11Details.value}}"
+                                       [(ngModel)]="workshop11"
+                                       name="{{workshop11Details.value}}"
+                                       value="{{workshop11Details.title}}"
+                                       (change)="onWorkshopChange(workshop11Details)">
+                                <label class="fs-15"
+                                       for="{{workshop11Details.value}}"><b>{{workshop11Details.author}}</b>:
+                                    {{workshop11Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop12Details.value}}"
+                                       [(ngModel)]="workshop12"
+                                       name="{{workshop12Details.value}}"
+                                       value="{{workshop12Details.title}}"
+                                       (change)="onWorkshopChange(workshop12Details)"
+                                       disabled>
+                                <label class="fs-15 strike"
+                                       for="{{workshop12Details.value}}"><b>{{workshop12Details.author}}</b>:
+                                    {{workshop12Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop7Details.value}}"
-                  [(ngModel)]="workshop7"
-                  name="{{workshop7Details.value}}"
-                  value="{{workshop7Details.title}}"
-                  (change)="onWorkshopChange(workshop7Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop7Details.value}}"
-                ><b>{{workshop7Details.author}}</b>: {{workshop7Details.title}} -
-                  {{ activeMember ? workshop7Details.membersPrice : workshop7Details.regularPrice }} zł
-                </label>
-              </div>
+                            <p class="m-t">Sobota godzina 15.30-18.30</p>
+                            <hr>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop8Details.value}}"
-                  [(ngModel)]="workshop8"
-                  name="{{workshop8Details.value}}"
-                  value="{{workshop8Details.title}}"
-                  (change)="onWorkshopChange(workshop8Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop8Details.value}}"
-                ><b>{{workshop8Details.author}}</b>: {{workshop8Details.title}} -
-                  {{ activeMember ? workshop8Details.membersPrice : workshop8Details.regularPrice }} zł
-                </label>
-              </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop4Details.value}}"
+                                       [(ngModel)]="workshop4"
+                                       name="{{workshop4Details.value}}"
+                                       value="{{workshop4Details.title}}"
+                                       (change)="onWorkshopChange(workshop4Details)">
+                                <label class="fs-15"
+                                       for="{{workshop4Details.value}}"><b>{{workshop4Details.author}}</b>:
+                                    {{workshop4Details.title}} -
+                                    {{ activeMember ? workshop4Details.membersPrice : workshop4Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop1Details.value}}"
+                                       [(ngModel)]="workshop1"
+                                       name="{{workshop1Details.value}}"
+                                       value="{{workshop1Details.title}}"
+                                       (change)="onWorkshopChange(workshop1Details)"
+                                       disabled>
+                                <label class="fs-15 strike"
+                                       for="{{workshop1Details.value}}"><b>{{workshop1Details.author}}</b>:
+                                    {{workshop1Details.title}} -
+                                    {{ activeMember ? workshop1Details.membersPrice : workshop1Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop9Details.value}}"
-                  [(ngModel)]="workshop9"
-                  name="{{workshop9Details.value}}"
-                  value="{{workshop9Details.title}}"
-                  (change)="onWorkshopChange(workshop9Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop9Details.value}}"
-                ><b>{{workshop9Details.author}}</b>: {{workshop9Details.title}} -
-                  {{ activeMember ? workshop9Details.membersPrice : workshop9Details.regularPrice }} zł
-                </label>
-              </div>
+                            <p class="m-t">Niedziela godzina 9.00-12.00</p>
+                            <hr>
 
-              <div class="ml-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="{{workshop10Details.value}}"
-                  [(ngModel)]="workshop10"
-                  name="{{workshop10Details.value}}"
-                  value="{{workshop10Details.title}}"
-                  (change)="onWorkshopChange(workshop10Details)"
-                >
-                <label
-                  class="fs-15"
-                  for="{{workshop10Details.value}}"
-                ><b>{{workshop10Details.author}}</b>: {{workshop10Details.title}} -
-                  {{ activeMember ? workshop10Details.membersPrice : workshop10Details.regularPrice }} zł
-                </label>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row mt-4">
-            <div class="form-check ml-3 mb-0 col-12">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="doctorPoints"
-                value="doctorPoints"
-                #regulamin="ngModel"
-                [(ngModel)]="user.doctorPoints"
-                name="doctorPoints"
-              >
-              <label
-                class="fs-15 mb-0"
-                for="doctorPoints"
-              > Chcę otrzymać zaświadczenie o punktach lekarskich
-              </label>
-            </div>
-          </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop9Details.value}}"
+                                       [(ngModel)]="workshop9"
+                                       name="{{workshop9Details.value}}"
+                                       value="{{workshop9Details.title}}"
+                                       (change)="onWorkshopChange(workshop9Details)">
+                                <label class="fs-15"
+                                       for="{{workshop9Details.value}}"><b>{{workshop9Details.author}}</b>:
+                                    {{workshop9Details.title}} -
+                                    {{ activeMember ? workshop9Details.membersPrice : workshop9Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop3Details.value}}"
+                                       [(ngModel)]="workshop3"
+                                       name="{{workshop3Details.value}}"
+                                       value="{{workshop3Details.title}}"
+                                       (change)="onWorkshopChange(workshop3Details)">
+                                <label class="fs-15"
+                                       for="{{workshop3Details.value}}"><b>{{workshop3Details.author}}</b>:
+                                    {{workshop3Details.title}} -
+                                    {{ activeMember ? workshop3Details.membersPrice : workshop3Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop7Details.value}}"
+                                       [(ngModel)]="workshop7"
+                                       name="{{workshop7Details.value}}"
+                                       value="{{workshop7Details.title}}"
+                                       (change)="onWorkshopChange(workshop7Details)">
+                                <label class="fs-15"
+                                       for="{{workshop7Details.value}}"><b>{{workshop7Details.author}}</b>:
+                                    {{workshop7Details.title}} -
+                                    {{ activeMember ? workshop7Details.membersPrice : workshop7Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop8Details.value}}"
+                                       [(ngModel)]="workshop8"
+                                       name="{{workshop8Details.value}}"
+                                       value="{{workshop8Details.title}}"
+                                       (change)="onWorkshopChange(workshop8Details)">
+                                <label class="fs-15"
+                                       for="{{workshop8Details.value}}"><b>{{workshop8Details.author}}</b>:
+                                    {{workshop8Details.title}} -
+                                    {{ activeMember ? workshop8Details.membersPrice : workshop8Details.regularPrice }}
+                                    zł
+                                </label>
+                            </div>
+
+                            <p class="m-t">Niedziela godzina 9.00-10.30</p>
+                            <hr>
+
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop13Details.value}}"
+                                       [(ngModel)]="workshop13"
+                                       name="{{workshop13Details.value}}"
+                                       value="{{workshop13Details.title}}"
+                                       (change)="onWorkshopChange(workshop13Details)"
+                                       disabled>
+                                <label class="fs-15 strike"
+                                       for="{{workshop13Details.value}}"><b>{{workshop13Details.author}}</b>:
+                                    {{workshop13Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop14Details.value}}"
+                                       [(ngModel)]="workshop14"
+                                       name="{{workshop14Details.value}}"
+                                       value="{{workshop14Details.title}}"
+                                       (change)="onWorkshopChange(workshop14Details)">
+                                <label class="fs-15"
+                                       for="{{workshop14Details.value}}"><b>{{workshop14Details.author}}</b>:
+                                    {{workshop14Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
+
+                            <p class="m-t">Niedziela godzina 10.30-12.00</p>
+                            <hr>
+
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop15Details.value}}"
+                                       [(ngModel)]="workshop15"
+                                       name="{{workshop15Details.value}}"
+                                       value="{{workshop15Details.title}}"
+                                       (change)="onWorkshopChange(workshop15Details)">
+                                <label class="fs-15"
+                                       for="{{workshop15Details.value}}"><b>{{workshop15Details.author}}</b>:
+                                    {{workshop15Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
+
+                            <div class="ml-3">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="{{workshop16Details.value}}"
+                                       [(ngModel)]="workshop16"
+                                       name="{{workshop16Details.value}}"
+                                       value="{{workshop16Details.title}}"
+                                       (change)="onWorkshopChange(workshop16Details)">
+                                <label class="fs-15"
+                                       for="{{workshop16Details.value}}"><b>{{workshop16Details.author}}</b>:
+                                    {{workshop16Details.title}} -
+                                    (w cenie konferencji)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="form-check ml-3 mb-0 col-12">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="doctorPoints"
+                                   value="doctorPoints"
+                                   #regulamin="ngModel"
+                                   [(ngModel)]="user.doctorPoints"
+                                   name="doctorPoints">
+                            <label class="fs-15 mb-0"
+                                   for="doctorPoints"> Chcę otrzymać zaświadczenie o punktach lekarskich <b>(Szanowni
+                                    Państwo,
+                                    aktualnie
+                                    oczekujemy na rozpatrzenie wniosku o przyznanie punktów lekarskich, w związku z czym
+                                    nie
+                                    możemy zagwarantować Państwu ich otrzymania)</b>
+                            </label>
+                        </div>
+                    </div>
 
 
-          <div
-            *ngIf="user.doctorPoints"
-            class="row mt-3"
-          >
-            <div class="col-lg-6 col-12">
-              <label for="doctorLicenseNumber">Numer prawa wykonywania zawodu</label>
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="user.doctorLicenseNumber"
-                name="doctorLicenseNumber"
-              >
-            </div>
-          </div>
+                    <div *ngIf="user.doctorPoints"
+                         class="row mt-3">
+                        <div class="col-lg-6 col-12">
+                            <label for="doctorLicenseNumber">Numer prawa wykonywania zawodu</label>
+                            <input type="text"
+                                   class="form-control"
+                                   [(ngModel)]="user.doctorLicenseNumber"
+                                   name="doctorLicenseNumber">
+                        </div>
+                    </div>
 
 
-          <!-- Faktura VAT -->
-          <div class="row mt-3">
-            <div class="form-group col-12">
-              <hr>
-              <label
-                class="col-12 pl-0 mb-3"
-                for="fv"
-              >Dane do faktury (Invoice data) (prosimy o podanie danych firmy, instytucji na którą ma
-                być
-                wystawiony
-                dokument)</label>
-              <select
-                class="custom-select"
-                [(ngModel)]="user.fv"
-                name="fv"
-              >
-                <option value="">Proszę wybrać</option>
-                <option value="Nie dziękuję">Nie dziękuję</option>
-                <option value="Tak poproszę">Tak poproszę</option>
-              </select>
-            </div>
-          </div>
+                    <!-- Faktura VAT -->
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <hr>
+                            <label class="col-12 pl-0 mb-3"
+                                   for="fv">Dane do faktury (Invoice data) (prosimy o podanie danych firmy, instytucji
+                                na którą ma
+                                być
+                                wystawiony
+                                dokument)</label>
+                            <select class="custom-select"
+                                    [(ngModel)]="user.fv"
+                                    name="fv">
+                                <option value="">Proszę wybrać</option>
+                                <option value="Nie dziękuję">Nie dziękuję</option>
+                                <option value="Tak poproszę">Tak poproszę</option>
+                            </select>
+                        </div>
+                    </div>
 
-          <div *ngIf="user.fv =='Tak poproszę'">
-            <div class="row">
-              <div class="col-lg-6 col-xs-12 mt-3">
-                <label for="companyName">Nazwa firmy (Company)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyName"
-                  name="compnayName"
-                >
-              </div>
-              <div class="col-lg-6 col-xs-12 mt-3">
-                <label for="companyNip">NIP (Tax identification numer)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyNip"
-                  name="companyNip"
-                >
-              </div>
-            </div>
+                    <div *ngIf="user.fv =='Tak poproszę'">
+                        <div class="row">
+                            <div class="col-lg-6 col-xs-12 mt-3">
+                                <label for="companyName">Nazwa firmy (Company)</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyName"
+                                       name="compnayName">
+                            </div>
+                            <div class="col-lg-6 col-xs-12 mt-3">
+                                <label for="companyNip">NIP (Tax identification numer)</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyNip"
+                                       name="companyNip">
+                            </div>
+                        </div>
 
-            <!-- <div class="row">
+                        <!-- <div class="row">
               <div class="col-lg-12 col-xs-12 mt-3">
                 <label for="companyAddress">Adres - ulica, nr domu/lokalu (Address)</label>
                 <input
@@ -485,125 +529,103 @@
               </div>
             </div> -->
 
-            <div class="row">
-              <div class="col-lg-6 col-12 mt-3">
-                <label for="companyAddress">Nazwa ulicy</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyAddress"
-                  name="companyAddress"
-                >
-              </div>
-              <div class="col-lg-3 col-12 mt-3">
-                <label for="companyNrDomu">Numer domu</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyNrDomu"
-                  name="companyNrDomu"
-                >
-              </div>
-              <div class="col-lg-3 col-12 mt-3">
-                <label for="companyNrLokalu">Numer lokalu</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyNrLokalu"
-                  name="companyNrLokalu"
-                >
-              </div>
-            </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-12 mt-3">
+                                <label for="companyAddress">Nazwa ulicy</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyAddress"
+                                       name="companyAddress">
+                            </div>
+                            <div class="col-lg-3 col-12 mt-3">
+                                <label for="companyNrDomu">Numer domu</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyNrDomu"
+                                       name="companyNrDomu">
+                            </div>
+                            <div class="col-lg-3 col-12 mt-3">
+                                <label for="companyNrLokalu">Numer lokalu</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyNrLokalu"
+                                       name="companyNrLokalu">
+                            </div>
+                        </div>
 
-            <div class="row">
-              <div class="col-lg-3 col-12 mt-3">
-                <label for="companyZip">Kod pocztowy (Postal code)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyZip"
-                  name="comnanyZip"
-                >
-              </div>
-              <div class="col-lg-3 col-12 mt-3">
-                <label for="companyPoczta">Poczta (Post)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyPoczta"
-                  name="comnanyPoczta"
-                >
-              </div>
-              <div class="col-lg-6 col-xs-12 mt-3">
-                <label for="companyCity">Miasto (City)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="user.companyCity"
-                  name="companyCity"
-                >
-              </div>
-            </div>
-            <p class="mt-3 fs-13"><b>Proszę sprawdzić poprawność danych. Po wystawieniu faktury nie będzie możliwości
-                zmiany jej danych oraz wystawienia
-                faktur częściowych.</b></p>
-          </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-12 mt-3">
+                                <label for="companyZip">Kod pocztowy (Postal code)</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyZip"
+                                       name="comnanyZip">
+                            </div>
+                            <div class="col-lg-3 col-12 mt-3">
+                                <label for="companyPoczta">Poczta (Post)</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyPoczta"
+                                       name="comnanyPoczta">
+                            </div>
+                            <div class="col-lg-6 col-xs-12 mt-3">
+                                <label for="companyCity">Miasto (City)</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="user.companyCity"
+                                       name="companyCity">
+                            </div>
+                        </div>
+                        <p class="mt-3 fs-13"><b>Proszę sprawdzić poprawność danych. Po wystawieniu faktury nie będzie
+                                możliwości
+                                zmiany jej danych oraz wystawienia
+                                faktur częściowych.</b></p>
+                    </div>
 
-          <div class="row">
-            <div class="col-12 mt-3">
-              <hr>
-              <h5>Kwota do zapłaty (Registration fee): {{totalPrice}}
-                zł
-              </h5>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <hr>
+                            <h5>Kwota do zapłaty (Registration fee): {{totalPrice}}
+                                zł
+                            </h5>
+                        </div>
+                    </div>
 
-          <div class="row mt-3">
-            <div class="form-check ml-3 col-12">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="regulamin"
-                value="regulamin"
-                #regulamin="ngModel"
-                [(ngModel)]="user.regulamin"
-                name="regulamin"
-                required
-              >
-              <label
-                class="fs-15"
-                for="regulamin"
-              >
-                Oświadczam, że zapoznałem/am się z treścią
-                <a
-                  href="assets/Regulamin-Konferencji-Krakow-2020.pdf"
-                  target="_blank"
-                >regulaminu konferencji</a> i akceptuje jego postanowienia. (I accept the <a
-                  href="assets/En-Regulamin-Konferencji-Krakow-2020.pdf"
-                  target="_blank"
-                >conference regulations</a>)
-                <span class="invalid">*</span>
-              </label>
-            </div>
-            <a
-              class="btn btn-outline-info disabled mt-3"
-              *ngIf="!regulamin.valid"
-            >Wyślij zgłoszenie - zaznacz, że zapoznałeś/łaś się z regulaminem</a>
-            <button
-              type="submit"
-              class="btn btn-success mt-3 btn-block col-w"
-              *ngIf="regulamin.valid"
-            >Wyślij zgłoszenie</button>
-          </div>
+                    <div class="row mt-3">
+                        <div class="form-check ml-3 col-12">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="regulamin"
+                                   value="regulamin"
+                                   #regulamin="ngModel"
+                                   [(ngModel)]="user.regulamin"
+                                   name="regulamin"
+                                   required>
+                            <label class="fs-15"
+                                   for="regulamin">
+                                Oświadczam, że zapoznałem/am się z treścią
+                                <a href="assets/Regulamin-Konferencji-PTTPB-2021.pdf"
+                                   target="_blank">regulaminu konferencji</a> i akceptuje jego postanowienia. (I accept
+                                the <a href="assets/En-Regulamin-Konferencji-PTTPB-2021.pdf"
+                                   target="_blank">conference regulations</a>)
+                                <span class="invalid">*</span>
+                            </label>
+                        </div>
+                        <a class="btn btn-outline-info disabled mt-3"
+                           *ngIf="!regulamin.valid">Wyślij zgłoszenie - zaznacz, że zapoznałeś/łaś się z regulaminem</a>
+                        <button type="submit"
+                                class="btn btn-success mt-3 btn-block col-w"
+                                *ngIf="regulamin.valid">Wyślij zgłoszenie</button>
+                    </div>
 
-          <!-- <a
+                    <!-- <a
             class="btn btn-primary mt-3 mb-5 col-xs-12 col-w"
             (click)="getMember()"
             [ngClass]="!userEmail.valid ? 'disabled' : 'cursor-pointer'"
             *ngIf="!secondStep"
           >Przejdź do następnego kroku</a> -->
 
-          <!-- <div *ngIf="secondStep">
+                    <!-- <div *ngIf="secondStep">
             <div
               class="alert alert-success mt-3"
               role="alert"
@@ -612,38 +634,37 @@
               <b>Gratulacje</b> Rabat dla Członków PTTPB został naliczony
             </div>
           </div> -->
-        </form>
-      </div>
-      <!-- Success form submited-->
-      <div
-        class="alert alert-success"
-        role="alert"
-        *ngIf="formSubmited"
-      >
-        <h4 class="alert-heading">Twoje zgłoszenie zostało przyjęte</h4>
-        <p>Na podany przez ciebie adres email wysłaliśmy potwierdzenie rejestracji. Jeśli nie widzisz go proszę
-          sprawdzić w folderze "Spam"</p>
-        <p>Warunkiem uczestnictwa w konferencji jest dokonanie opłaty konferencyjnej. Zgodnie z regulaminem konferencji
-          prosimy
-          o uiszczenie opłaty konferencyjnej w terminie do 4 dni od daty rejestracji</p>
-        <h5>Kwota do zapłaty: {{totalPrice}} zł</h5>
-        <hr>
-        <p>Nr konta: 15 1050 1038 1000 0022 3148 3237</p>
-        <p>POLSKIE TOWARZYSTWO TERAPII POZNAWCZEJ I BEHAWIORALNEJ im. prof. Zdzisława Bizonia
-          <br> UL. CHŁODNA 64 LOK. 306A
-          <br> 00-872 WARSZAWA
-        </p>
-        <p>Tytuł przelewu: Opłata Konferencyjna,
-          <i>{{user.name}} {{user.surname}}</i>
-        </p>
-      </div>
-    </div>
-    <!-- <div
+                </form>
+            </div>
+            <!-- Success form submited-->
+            <div class="alert alert-success"
+                 role="alert"
+                 *ngIf="formSubmited">
+                <h4 class="alert-heading">Twoje zgłoszenie zostało przyjęte</h4>
+                <p>Na podany przez ciebie adres email wysłaliśmy potwierdzenie rejestracji. Jeśli nie widzisz go proszę
+                    sprawdzić w folderze "Spam"</p>
+                <p>Warunkiem uczestnictwa w konferencji jest dokonanie opłaty konferencyjnej. Zgodnie z regulaminem
+                    konferencji
+                    prosimy
+                    o uiszczenie opłaty konferencyjnej w terminie do 4 dni od daty rejestracji</p>
+                <h5>Kwota do zapłaty: {{totalPrice}} zł</h5>
+                <hr>
+                <p>Nr konta: 15 1050 1038 1000 0022 3148 3237</p>
+                <p>POLSKIE TOWARZYSTWO TERAPII POZNAWCZEJ I BEHAWIORALNEJ im. prof. Zdzisława Bizonia
+                    <br> UL. CHŁODNA 64 LOK. 306A
+                    <br> 00-872 WARSZAWA
+                </p>
+                <p>Tytuł przelewu: Opłata Konferencyjna,
+                    <i>{{user.name}} {{user.surname}}</i>
+                </p>
+            </div>
+        </div>
+        <!-- <div
       class="alert alert-success text-center"
       role="alert"
     >
       <h4 class="alert-heading">Rejestracja zakończona</h4>
       <p>Limit miejsc został wyczerpany</p>
     </div> -->
-  </div>
+    </div>
 </div>

@@ -4,16 +4,14 @@
   <div class="row b-b b-col pt-2 pb-2">
     <div class="col text-left fs-13 col-grey d-flex align-items-center">
       <img src="{{versionEn ? 'assets/pl-flag.png' : 'assets/en-flag.png'}}">
-      <a
-        class="link pl-2"
-        routerLink="{{versionEn ? '/' : '/en-home-page'}}"
-        (click)="changeLanguage()"
-      >{{versionEn ? 'Polska wersja' : 'English version'}}</a>
+      <a class="link pl-2"
+         routerLink="{{versionEn ? '/' : '/en-home-page'}}"
+         (click)="changeLanguage()">{{versionEn ? 'Polska wersja' : 'English version'}}</a>
     </div>
     <!-- <div class="col text-right fs-13 col-grey">Dodatkowe pytania:
       <a href="mailto:sekretariat@pttpb.pl">sekretariat@pttpb.pl</a>
       <span class="ml-1 mr-1">|</span> Problemy z rejestracją: <a
-        href="mailto:konferencja@pttpb.pl">konferencja@pttpb.pl</a>
+         href="mailto:konferencja@pttpb.pl">konferencja@pttpb.pl</a>
     </div> -->
   </div>
 </div>
@@ -22,35 +20,28 @@
   <div class="row align-items-center">
     <div class="col-9 col-md-5 col-lg-6 col-xl-6">
       <a routerLink="{{versionEn ? '/en-home-page' : '/'}}">
-        <img
-          class="img-fluid pt-4 pb-4"
-          src="assets/logokrakow.png"
-        >
+        <img class="img-fluid pt-4 pb-4"
+             src="assets/logo2021.png"
+             *ngIf="!versionEn">
+        <img class="img-fluid pt-4 pb-4"
+             src="assets/logo2021en.png"
+             *ngIf="versionEn">
       </a>
     </div>
     <div class="col-3 col-md-5 col-lg-4 col-xl-5 text-right hidden-sm-down">
-      <button
-        type="button"
-        class="btn btn-primary"
-        routerLink="/rejestracja-na-konferencje"
-      >{{versionEn ? 'Registration  for conferences' : 'Rejestracja na konferencję'}} </button>
+      <button type="button"
+              class="btn btn-primary"
+              routerLink="/rejestracja-na-konferencje">{{versionEn ? 'Registration for conferences' : 'Rejestracja na
+        konferencję'}} </button>
     </div>
     <div class="col-3 col-md-2 col-lg-2 col-xl-1 text-right">
-      <a
-        class="mr-2"
-        href="https://www.facebook.com/PTTPB-Krak%C3%B3w-2020-102004127930601"
-        target="blank"
-      ><img
-          src="assets/facebook.png"
-          alt=""
-        ></a>
-      <a
-        href="https://www.instagram.com/pttpbkrakow2020/"
-        target="blank"
-      ><img
-          src="assets/instagram.png"
-          alt=""
-        ></a>
+      <a class="mr-2"
+         href="https://www.facebook.com/PTTPB-Krak%C3%B3w-2020-102004127930601"
+         target="blank"><img src="assets/facebook.png"
+             alt=""></a>
+      <a href="https://www.instagram.com/pttpb_official/"
+         target="blank"><img src="assets/instagram.png"
+             alt=""></a>
     </div>
   </div>
   <app-meganav *ngIf="!versionEn"></app-meganav>
@@ -61,11 +52,11 @@
   <div class="container">
     <div class="row">
       <div class="col d-flex align-items-center justify-content-center">
-        <button
-          type="button"
-          class="btn btn-primary"
-          routerLink="/rejestracja-na-konferencje"
-        >{{versionEn ? 'Registration  for conferences' : 'Rejestracja na konferencje'}} </button>
+        <button type="button"
+                class="btn btn-primary"
+                routerLink="/rejestracja-na-konferencje">{{versionEn ? 'Registration for conferences' : 'Rejestracja
+          na
+          konferencje'}} </button>
       </div>
     </div>
   </div>

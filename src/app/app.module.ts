@@ -125,15 +125,31 @@ import { EnPrzemyslawBabelComponent } from "./components/en-przemyslaw-babel/en-
 import { EnAnitaBrynskaComponent } from "./components/en-anita-brynska/en-anita-brynska.component";
 import { EnYonaTeichmanComponent } from "./components/en-yona-teichman/en-yona-teichman.component";
 import { HarmonogramComponent } from "./components/harmonogram/harmonogram.component";
-import { EnBogdanZawadzkiComponent } from './components/en-bogdan-zawadzki/en-bogdan-zawadzki.component';
-import { YonaTeichmanComponent } from './components/yona-teichman/yona-teichman.component';
-import { EnWarsztatyComponent } from './components/en-warsztaty/en-warsztaty.component';
-import { EnWorkshopReobertLeahyComponent } from './components/en-workshop-reobert-leahy/en-workshop-reobert-leahy.component';
-import { EnWorkshopFrankDatilloComponent } from './components/en-workshop-frank-datillo/en-workshop-frank-datillo.component';
-import { EnWorkshopMichaelaSwalesComponent } from './components/en-workshop-michaela-swales/en-workshop-michaela-swales.component';
-import { EnWorkshopEduardoKeganComponent } from './components/en-workshop-eduardo-kegan/en-workshop-eduardo-kegan.component';
-import { EnWorkshopFrankDatilloSecondComponent } from './components/en-workshop-frank-datillo-second/en-workshop-frank-datillo-second.component';
-import { EnWorkshopCoryNewmanComponent } from './components/en-workshop-cory-newman/en-workshop-cory-newman.component';
+import { EnBogdanZawadzkiComponent } from "./components/en-bogdan-zawadzki/en-bogdan-zawadzki.component";
+import { YonaTeichmanComponent } from "./components/yona-teichman/yona-teichman.component";
+import { EnWarsztatyComponent } from "./components/en-warsztaty/en-warsztaty.component";
+import { EnWorkshopReobertLeahyComponent } from "./components/en-workshop-reobert-leahy/en-workshop-reobert-leahy.component";
+import { EnWorkshopFrankDatilloComponent } from "./components/en-workshop-frank-datillo/en-workshop-frank-datillo.component";
+import { EnWorkshopMichaelaSwalesComponent } from "./components/en-workshop-michaela-swales/en-workshop-michaela-swales.component";
+import { EnWorkshopEduardoKeganComponent } from "./components/en-workshop-eduardo-kegan/en-workshop-eduardo-kegan.component";
+import { EnWorkshopFrankDatilloSecondComponent } from "./components/en-workshop-frank-datillo-second/en-workshop-frank-datillo-second.component";
+import { EnWorkshopCoryNewmanComponent } from "./components/en-workshop-cory-newman/en-workshop-cory-newman.component";
+import { MaciejBohenskiComponent } from "./components/maciej-bohenski/maciej-bohenski.component";
+import { WorkshopMaciejBochenskiComponent } from "./components/workshop-maciej-bochenski/workshop-maciej-bochenski.component";
+import { EnLogosComponent } from "./components/en-logos/en-logos.component";
+import { EnInformacjeComponent } from "./components/en-informacje/en-informacje.component";
+import { AndrzejKuczmierczykComponent } from "./components/andrzej-kuczmierczyk/andrzej-kuczmierczyk.component";
+import { EnAndrzejKuczmierczykComponent } from "./components/en-andrzej-kuczmierczyk/en-andrzej-kuczmierczyk.component";
+import { KamilaJakubiakComponent } from "./components/kamila-jakubiak/kamila-jakubiak.component";
+import { WorkshopKamilaJakubiakComponent } from "./components/workshop-kamila-jakubiak/workshop-kamila-jakubiak.component";
+import { PartnerzyComponent } from "./components/partnerzy/partnerzy.component";
+import { EnPartnerzyComponent } from "./components/en-partnerzy/en-partnerzy.component";
+import { WorkshopCentrumneuroComponent } from "./components/workshop-centrumneuro/workshop-centrumneuro.component";
+import { WorkshopAlanFruzzettiComponent } from "./components/workshop-alan-fruzzetti/workshop-alan-fruzzetti.component";
+import { AlanFruzzettiComponent } from "./components/alan-fruzzetti/alan-fruzzetti.component";
+import { EnHarmonogramComponent } from "./components/en-harmonogram/en-harmonogram.component";
+import { EnAlanFruzzettiComponent } from "./components/en-alan-fruzzetti/en-alan-fruzzetti.component";
+import { EnWorkshopAlanFruzzettiComponent } from "./components/en-workshop-alan-fruzzetti/en-workshop-alan-fruzzetti.component";
 
 const appRoutes: Routes = [
   { path: "home-page", component: HomePageComponent },
@@ -147,6 +163,7 @@ const appRoutes: Routes = [
   { path: "rejestracja-na-konferencje", component: RejestracjaComponent },
   { path: "english-version", component: EnglishVersionComponent },
   { path: "informacje", component: InformacjeComponent },
+  { path: "en-informacje", component: EnInformacjeComponent },
   { path: "polityka-prywatnosci", component: PrivacyPolicyComponent },
   { path: "kontakt", component: KontaktComponent },
   { path: "en-kontakt", component: EnKontaktComponent },
@@ -187,25 +204,36 @@ const appRoutes: Routes = [
   { path: "yona-teichman", component: YonaTeichmanComponent },
   { path: "en-yona-teichman", component: EnYonaTeichmanComponent },
   { path: "harmonogram", component: HarmonogramComponent },
+  { path: "en-harmonogram", component: EnHarmonogramComponent },
+  { path: "andrzej-kuczmierczyk", component: AndrzejKuczmierczykComponent },
+  { path: "alan-fruzzetti", component: AlanFruzzettiComponent },
+  { path: "en-alan-fruzzetti", component: EnAlanFruzzettiComponent },
+
+  {
+    path: "en-andrzej-kuczmierczyk",
+    component: EnAndrzejKuczmierczykComponent,
+  },
   {
     path: "instytut-psychologii-uj",
-    component: InstytutPsychologiiUjComponent
+    component: InstytutPsychologiiUjComponent,
   },
   {
     path: "en-instytut-psychologii-uj",
-    component: EnInstytutPsychologiiUjComponent
+    component: EnInstytutPsychologiiUjComponent,
   },
   { path: "cennik", component: CennikComponent },
   { path: "en-cennik", component: EnCennikComponent },
   { path: "konferencja-studencka", component: KonferencjaStudenckaComponent },
   {
     path: "en-konferencja-studencka",
-    component: EnKonferencjaStudenckaComponent
+    component: EnKonferencjaStudenckaComponent,
   },
   { path: "warsztaty", component: WarsztatyComponent },
   { path: "en-warsztaty", component: EnWarsztatyComponent },
+  { path: "partnerzy", component: PartnerzyComponent },
+  { path: "en-partnerzy", component: EnPartnerzyComponent },
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
-  { path: "**", component: PageNotFoundComponent }
+  { path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -336,18 +364,34 @@ const appRoutes: Routes = [
     EnWorkshopMichaelaSwalesComponent,
     EnWorkshopEduardoKeganComponent,
     EnWorkshopFrankDatilloSecondComponent,
-    EnWorkshopCoryNewmanComponent
+    EnWorkshopCoryNewmanComponent,
+    MaciejBohenskiComponent,
+    WorkshopMaciejBochenskiComponent,
+    EnLogosComponent,
+    EnInformacjeComponent,
+    AndrzejKuczmierczykComponent,
+    EnAndrzejKuczmierczykComponent,
+    KamilaJakubiakComponent,
+    WorkshopKamilaJakubiakComponent,
+    PartnerzyComponent,
+    EnPartnerzyComponent,
+    WorkshopCentrumneuroComponent,
+    WorkshopAlanFruzzettiComponent,
+    AlanFruzzettiComponent,
+    EnHarmonogramComponent,
+    EnAlanFruzzettiComponent,
+    EnWorkshopAlanFruzzettiComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     CookieService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

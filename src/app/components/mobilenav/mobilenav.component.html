@@ -5,50 +5,36 @@
         <nav class="navbar navbar-toggleable-sm navbar-inverse">
           <div class="change-country text-left fs-13 d-flex align-items-center">
             <img src="{{versionEn ? 'assets/pl-flag.png' : 'assets/en-flag.png'}}">
-            <a
-              class="text-white pl-2"
-              routerLink="{{versionEn ? '/' : '/en-home-page'}}"
-              (click)="changeLanguage()"
-            >{{versionEn ? 'Polska wersja' : 'English version'}}</a>
+            <a class="text-white pl-2"
+               routerLink="{{versionEn ? '/' : '/en-home-page'}}"
+               (click)="changeLanguage()">{{versionEn ? 'Polska wersja' : 'English version'}}</a>
           </div>
-          <button
-            class="navbar-toggler ml-auto"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobilenavToogle"
-            aria-controls="mobilenavToogle"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button class="navbar-toggler ml-auto"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#mobilenavToogle"
+                  aria-controls="mobilenavToogle"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div
-            class="collapse navbar-collapse"
-            id="mobilenavToogle"
-          >
+          <div class="collapse navbar-collapse"
+               id="mobilenavToogle">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li
-                class="nav-item nav-link"
-                data-toggle="collapse"
-                href="#submenu1"
-                aria-controls="#submenu1"
-              >{{versionEn ? 'Organizers' : 'Organizator'}}</li>
-              <div
-                class="collapse ml-3"
-                id="submenu1"
-              >
-                <li
-                  class="nav-item"
+              <li class="nav-item nav-link"
                   data-toggle="collapse"
-                  data-target=".navbar-collapse.show"
-                >
-                  <a
-                    class="nav-link"
-                    routerLink="{{versionEn ? '/en-organizator' : '/organizator'}}"
-                  >PTTPB</a>
+                  href="#submenu1"
+                  aria-controls="#submenu1">{{versionEn ? 'Organizers' : 'Organizator'}}</li>
+              <div class="collapse ml-3"
+                   id="submenu1">
+                <li class="nav-item"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                  <a class="nav-link"
+                     routerLink="{{versionEn ? '/en-organizator' : '/organizator'}}">PTTPB</a>
                 </li>
-                <li
+                <!-- <li
                   class="nav-item"
                   data-toggle="collapse"
                   data-target=".navbar-collapse.show"
@@ -57,110 +43,85 @@
                     class="nav-link"
                     routerLink="{{versionEn ? '/en-instytut-psychologii-uj' : '/instytut-psychologii-uj'}}"
                   >{{versionEn ? 'The Institute of Psychology UJ' : 'Instytut Psychologii UJ'}}</a>
-                </li>
-                <li
-                  class="nav-item"
-                  data-toggle="collapse"
-                  data-target=".navbar-collapse.show"
-                >
-                  <a
-                    class="nav-link"
-                    routerLink="{{versionEn ? '/en-komitety' : '/komitety'}}"
-                  >{{versionEn ? 'Committees' : 'Komitet'}}</a>
+                </li> -->
+                <li class="nav-item"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                  <a class="nav-link"
+                     routerLink="{{versionEn ? '/en-komitety' : '/komitety'}}">{{versionEn ? 'Committees' :
+                    'Komitet'}}</a>
                 </li>
               </div>
-
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/warsztaty' : '/warsztaty'}}"
-                >{{versionEn ? 'Programme' : 'Program'}}</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/invited-speakers' : '/wykladowcy'}}"
-                >{{versionEn ? 'Invited Speakers' : 'Wykladowcy'}}</a>
-              </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-abstrakty' : '/abstrakty'}}"
-                >{{versionEn ? 'Call for papers' : 'Zgłoszenie abstraktu'}}</a>
-              </li>
-              <li
-                class="nav-item nav-link"
-                data-toggle="collapse"
-                href="#submenu2"
-                aria-controls="#submenu2"
-              >{{versionEn ? 'General Info' : 'Informacje'}}</li>
-              <div
-                class="collapse ml-3"
-                id="submenu2"
-              >
-                <li
-                  class="nav-item"
+              <li class="nav-item"
                   data-toggle="collapse"
-                  data-target=".navbar-collapse.show"
-                >
-                  <a
-                    class="nav-link"
-                    routerLink="{{versionEn ? '/en-auditorium-maximum' : '/auditorium-maximum'}}"
-                  >{{versionEn ? 'Venue' : 'Auditorium Maximum'}}</a>
-                </li>
-                <li
-                  class="nav-item"
-                  data-toggle="collapse"
-                  data-target=".navbar-collapse.show"
-                >
-                  <a
-                    class="nav-link"
-                    routerLink="{{versionEn ? '/en-dojazd-komunikacja' : '/dojazd-komunikacja'}}"
-                  >{{versionEn ? 'Transport' : 'Dojazd i komunikacja'}}</a>
-                </li>
-                <li
-                  class="nav-item"
-                  data-toggle="collapse"
-                  data-target=".navbar-collapse.show"
-                >
-                  <a
-                    class="nav-link"
-                    routerLink="{{versionEn ? '/en-krakow' : '/krakow'}}"
-                  >{{versionEn ? 'Cracow' : 'Kraków'}}</a>
-                </li>
-              </div>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-kontakt' : '/kontakt'}}"
-                >{{versionEn ? 'Contact' : 'Kontakt'}}</a>
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-partnerzy' : '/partnerzy'}}">{{versionEn ? 'Partners' :
+                  'Partnerzy'}}</a>
               </li>
-              <li
-                class="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-                *ngIf="!versionEn"
-              >
-                <a
-                  class="nav-link"
-                  routerLink="{{versionEn ? '/en-konferencja-studencka' : '/konferencja-studencka'}}"
-                >{{versionEn ? 'Student Conference' : 'Konferencja Studencka'}}</a>
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-harmonogram' : '/harmonogram'}}">{{versionEn ? 'timetable' :
+                  'Harmonogram'}}</a>
+              </li>
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-warsztaty' : '/warsztaty'}}">{{versionEn ? 'Workshops' :
+                  'Warsztaty'}}</a>
+              </li>
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/invited-speakers' : '/wykladowcy'}}">{{versionEn ? 'Invited Speakers' :
+                  'Wykladowcy'}}</a>
+              </li>
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-abstrakty' : '/abstrakty'}}">{{versionEn ? 'Call for papers' :
+                  'Zgłoszenie abstraktu'}}</a>
+              </li>
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-informacje' : '/informacje'}}">{{versionEn ? 'General Info' :
+                  'Informacje'}}</a>
+              </li>
+              <!-- <div class="collapse ml-3"
+                   id="submenu2">
+                <li class="nav-item"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                  <a class="nav-link"
+                     routerLink="{{versionEn ? '/en-auditorium-maximum' : '/auditorium-maximum'}}">{{versionEn ? 'Venue'
+                    : 'Auditorium Maximum'}}</a>
+                </li>
+                <li class="nav-item"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                  <a class="nav-link"
+                     routerLink="{{versionEn ? '/en-dojazd-komunikacja' : '/dojazd-komunikacja'}}">{{versionEn ?
+                    'Transport' : 'Dojazd i komunikacja'}}</a>
+                </li>
+                <li class="nav-item"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show">
+                  <a class="nav-link"
+                     routerLink="{{versionEn ? '/en-krakow' : '/krakow'}}">{{versionEn ? 'Cracow' : 'Kraków'}}</a>
+                </li>
+              </div> -->
+              <li class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">
+                <a class="nav-link"
+                   routerLink="{{versionEn ? '/en-kontakt' : '/kontakt'}}">{{versionEn ? 'Contact' : 'Kontakt'}}</a>
               </li>
             </ul>
           </div>

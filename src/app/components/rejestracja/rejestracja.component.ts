@@ -37,15 +37,15 @@ interface IWorkshop {
 @Component({
   selector: "app-rejestracja",
   templateUrl: "./rejestracja.component.html",
-  styleUrls: ["./rejestracja.component.css"]
+  styleUrls: ["./rejestracja.component.css"],
 })
 export class RejestracjaComponent implements OnInit {
   user: User;
   activeMember: boolean = false;
   secondStep: boolean = false;
   formSubmited: boolean = false;
-  conferencePrice: number = 900;
-  totalPrice = 900;
+  conferencePrice: number = 750;
+  totalPrice = 750;
   workshop1: boolean;
   workshop1Price: number;
   workshop2: boolean;
@@ -58,119 +58,175 @@ export class RejestracjaComponent implements OnInit {
   workshop5Price: number;
   workshop6: boolean;
   workshop6Price: number;
+  workshop7: boolean;
+  workshop7Price: number;
   selectedWorkshops: IWorkshop[] = [];
   selectedPreconferenceWorkshop: IWorkshop;
 
   preconference: IWorkshop[] = [
     {
-      regularPrice: 400,
-      membersPrice: 300,
-      author: "Frank Datillo",
-      title: "CBT with couples"
+      regularPrice: 300,
+      membersPrice: 200,
+      author: "Alan Fruzzetti",
+      title: "DBT with couples",
     },
     {
-      regularPrice: 400,
-      membersPrice: 300,
+      regularPrice: 300,
+      membersPrice: 200,
       author: "Robert Leahy",
-      title: "Emotional schema therapy"
+      title: "Emotional schema therapy",
     },
     {
-      regularPrice: 200,
-      membersPrice: 100,
-      author: "Michaela Swales",
+      regularPrice: 300,
+      membersPrice: 200,
+      author: "Cory Newan",
       title:
-        "Conceptualising and treating high- risk and complexity: What does DBT have to offer"
+        "Treating Bipolar Disorder with CBT and Family-Focused Interventions",
     },
     {
       regularPrice: 0,
       membersPrice: 0,
-      title: "Nie chcę brać udziału"
-    }
+      title: "Nie chcę brać udziału",
+    },
   ];
 
   workshop1Details: IWorkshop = {
     value: "workshop1",
     author: "Eduardo Keegan",
     title: "Just do it! Dealing with procrastination",
-    regularPrice: 250,
-    membersPrice: 150
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop2Details: IWorkshop = {
     value: "workshop2",
-    author: "Frank Datillo",
-    title: "CBT with families",
-    regularPrice: 250,
-    membersPrice: 150
+    author: "Maciej Bocheński",
+    title:
+      "Gdy przychodzi pismo z sądu. Czyli praktyczny kurs dla pracowników ochrony zdrowia psychicznego  jak postępować w kontaktach z organami wymiaru sprawiedliwości",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop3Details: IWorkshop = {
     value: "workshop3",
-    author: "Małgorzata Bielak",
-    title: "Praca z trybami w narcystycznym zaburzeniu osobowości",
-    regularPrice: 60,
-    membersPrice: 30
+    author: "Hubert Czupała",
+    title:
+      "Process-based CBT, czyli jak ewoluowały interwencje emocjonalne, poznawcze i behawioralne pod wpływem rozwoju badań nad kluczowymi procesami psychologicznej elastyczności",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop4Details: IWorkshop = {
     value: "workshop4",
-    author: "Hubert Czupała",
-    title:
-      "Process-based CBT, czyli jak ewoluowały interwencje emocjonalne, poznawcze i behawioralne pod wpływem rozwoju badań nad kluczowymi procesami psychologicznej elastyczności",
-    regularPrice: 60,
-    membersPrice: 30
+    author: "Mark Reinicke",
+    title: "CBT with angry and oppositional youth",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop5Details: IWorkshop = {
     value: "workshop5",
-    author: "Mark Reinicke",
-    title: "CBT with angry and oppositional youth",
-    regularPrice: 250,
-    membersPrice: 150
+    author: "Agnieszka Popiel, Ewa Pragłowska",
+    title:
+      "Skuteczne działanie w stresie – poznawczo-behawioralny program profilaktyki",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop6Details: IWorkshop = {
     value: "workshop6",
-    author: "Agnieszka Popiel, Ewa Pragłowska",
+    author: "Hanna Malinowska - Wikaryjczyk, Agnieszka Wroczyńska",
     title:
-      "Skuteczne działanie w stresie – poznawczo-behawioralny program profilaktyki",
-    regularPrice: 60,
-    membersPrice: 30
+      "Wystarczająco dobrze naprawdę wystarczy - transdiagnostyczne podejście do terapii perfekcjonizmu",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop7Details: IWorkshop = {
     value: "workshop7",
-    author: "Hanna Malinowska - Wikaryjczyk, Agnieszka Wroczyńska",
-    title:
-      "Wystarczająco dobrze naprawdę wystarczy - transdiagnostyczne podejście do terapii perfekcjonizmu",
-    regularPrice: 60,
-    membersPrice: 30
+    author: "Zespół Centrum Neurorehabilitacji im. Z.J. Dziurkowskich",
+    title: "Grupowa Poznawczo-Behawioralna Terapia w praktyce",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop8Details: IWorkshop = {
     value: "workshop8",
-    author: "Cory Newan",
-    title:
-      "Treating Bipolar Disorder with CBT and Family-Focused Interventions",
-    regularPrice: 250,
-    membersPrice: 150
+    author: "Kamila Jakubiak-Leńczuk",
+    title: "Zastosowanie Mindfulness w psychoterapii partnerskiej ",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop9Details: IWorkshop = {
     value: "workshop9",
-    author: "Anita Bryńska, Nina Szalas",
-    title:
-      "Terapia poznawczo-behawioralna zaburzeń związanych z zaburzeniem obsesyjno-kompulsyjnym (dysmorfofobia, zespół zbieractwa, trichotillomania)",
-    regularPrice: 60,
-    membersPrice: 30
+    author: "Jacek Legierski, Joachim Kowalski",
+    title: "Kluczowe techniki terapii metapoznawczej",
+    regularPrice: 80,
+    membersPrice: 50,
   };
 
   workshop10Details: IWorkshop = {
     value: "workshop10",
-    author: "Jacek Legierski, Joachim Kowalski",
-    title: "Kluczowe techniki terapii metapoznawczej",
-    regularPrice: 60,
-    membersPrice: 30
+    author: "Aleksandra Augustyn, Joanna Szmyd",
+    title:
+      "Terapia poznawczo - behawioralna zaburzeń snu oraz rytmu okołodobowego u nastolatków i młodych dorosłych (16-21 r. ż.) ",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop11Details: IWorkshop = {
+    value: "workshop11",
+    author: "Małgorzata Bereza – Stanisławska",
+    title:
+      "Wykorzystanie technik terapii poznawczo-behawioralnej w psychoonkologii dzieci i młodzieży",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop12Details: IWorkshop = {
+    value: "workshop12",
+    author: "Joanna Salbert",
+    title:
+      "Terapia strukturalna w praktyce terapeuty poznawczo- behawioralnego",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop13Details: IWorkshop = {
+    value: "workshop13",
+    author: "Olga Olszewska",
+    title:
+      "Wyjść z klatki. Praktyczne zastosowanie dialogu motywującego w empatycznej konfrontacji w terapii schematów",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop14Details: IWorkshop = {
+    value: "workshop14",
+    author: "Magdalena Muracka-Tylko, Magdalena Skuza-Singh",
+    title:
+      "Familly Connections (FC) – grupowy program wsparcia dla bliskich osób z dysregulacją emocji i zaburzeniem osobowości z pogranicza",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop15Details: IWorkshop = {
+    value: "workshop15",
+    author: "Natalia Liszewska",
+    title:
+      "Poznawczo-behawioralna psychoterapia osób po doświadczeniach przemocy ze strony partnera",
+    regularPrice: 0,
+    membersPrice: 0,
+  };
+
+  workshop16Details: IWorkshop = {
+    value: "workshop16",
+    author: "Alicja Baranek",
+    title:
+      "DBT w praktyce terapeuty poznawczo-behawioralnego – podobieństwa i różnice z CBT, włączanie grupowego treningu umiejętności",
+    regularPrice: 0,
+    membersPrice: 0,
   };
 
   constructor(private http: HttpClient) {}
@@ -198,7 +254,7 @@ export class RejestracjaComponent implements OnInit {
       totalPrice: "",
       contributionPayed: "",
       workshops: [],
-      workshopString: ""
+      workshopString: "",
     };
   }
 
@@ -221,9 +277,9 @@ export class RejestracjaComponent implements OnInit {
 
   getBasePrice(): number {
     if (this.activeMember) {
-      return 750;
+      return 600;
     } else {
-      return 900;
+      return 750;
     }
   }
 
@@ -240,7 +296,7 @@ export class RejestracjaComponent implements OnInit {
   }
 
   getWorkshopsPrice(): number {
-    const prices = this.selectedWorkshops.map(workshop => {
+    const prices = this.selectedWorkshops.map((workshop) => {
       if (this.activeMember) {
         return workshop.membersPrice;
       } else {
@@ -278,8 +334,8 @@ export class RejestracjaComponent implements OnInit {
   processForm() {
     this.user.totalPrice = this.getPrice();
     this.user.workshops = this.selectedWorkshops
-      .map(workshop => workshop.title)
-      .filter(i => !!i);
+      .map((workshop) => workshop.title)
+      .filter((i) => !!i);
     this.user.workshopString = this.user.workshops.join(", ");
     this.user.preconference =
       this.selectedPreconferenceWorkshop &&
